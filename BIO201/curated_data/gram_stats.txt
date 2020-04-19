@@ -1,0 +1,11 @@
+Phylum	gram_status
+Actinobacteria	positive
+Bacteroidetes	negative
+Elusimicrobia	negative
+Firmicutes	positive
+Fusobacteria	negative
+Lentisphaerae	negative
+Proteobacteria	negative
+Sprichaetes	negative
+Synergistetes	negative
+Verrucomicrobia	negative

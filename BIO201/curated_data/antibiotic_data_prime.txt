@@ -1,0 +1,807 @@
+participant_id	antibiotic_past_year	antibiotic_date	antibiotic_name
+U319	No	17-Feb	Macrobid
+U356	No	1-Mar	Amoxicillin
+U345	No	26-Apr	Penicillin
+U381	Yes	1 month ago 	-
+U617	Yes	1 month ago 	Amoxicillin
+U757	Yes	1 month ago 	Amoxicillin
+U363	Yes	1 month ago 	Amoxicillin
+U898	Yes	1 month ago 	"Amoxicillin, Clindamyacin"
+U701	Yes	1 month ago 	Ampicillin
+U336	Yes	1 month ago 	Augmenten
+U897	Yes	1 month ago 	Azithromycin
+U763	Yes	1 month ago 	Azithromycin
+U771	Yes	1 month ago 	Azithromycin
+U396	Yes	1 month ago 	Azithromycin
+U664	Yes	1 month ago 	Bactrim
+U321	No	1 month ago 	Cefdinir
+U869	Yes	1 month ago 	Minocycline
+U615	Yes	1 month ago 	Minocycline
+U678	Yes	1 month ago 	Minocycline
+U383	Yes	1 month ago 	Minocycline
+U815	Yes	1 month ago 	Penicillin
+U726	Yes	1 month ago 	Unsure
+U398	Yes	1 month ago 	Unsure
+U053	Yes	1 month ago 	-
+U059	Yes	1 month ago 	-
+U077	Yes	1 month ago 	-
+U092	Yes	1 month ago 	-
+U093	Yes	1 month ago 	-
+U109	Yes	1 month ago 	-
+U111	Yes	1 month ago 	-
+U146	Yes	1 month ago 	-
+U161	Yes	1 month ago 	-
+U180	Yes	1 month ago 	-
+U184	Yes	1 month ago 	-
+U892	Yes	1 month ago 	Amoxicillin
+U622	Yes	1 month ago 	Amoxicillin
+U631	Yes	1 month ago 	Amoxicillin
+U653	Yes	1 month ago 	Amoxicillin
+U377	Yes	1 month ago 	Azithromycin
+U838	Yes	1 month ago 	Azithromycin
+U838	Yes	1 month ago 	Azithromycin
+U755	Yes	1 month ago 	Azithromycin
+U325	Yes	1 month ago 	Cefadroxil
+U328	Yes	1 month ago 	Cefadroxil
+U724	Yes	1 month ago 	Cefadroxil
+U839	Yes	1 month ago 	Cephalexin
+U759	Yes	1 month ago 	Cephalexin
+U344	Yes	1 month ago 	Ciprofloxacin
+U806	Yes	1 month ago 	Doxycycline
+U863	Yes	1 month ago 	Doxycycline
+U582	Yes	1 month ago 	Macrobid
+U581	Yes	1 month ago 	Minocycline
+U688	Yes	1 month ago 	Minocycline
+U854	Yes	1 month ago 	Nitrofurantoin
+U685	Yes	1 month ago 	Sulfamethoxazole/Trimethoprim
+U674	Yes	1 month ago 	Unsure
+U735	Yes	1 week ago	Amoxicillin
+U625	Yes	1 week ago	Amoxicillin
+U722	Yes	1 week ago	Benzonatate
+U339	Yes	1 week ago	Cefadroxil
+U636	Yes	1 week ago	Cephalexin
+U889	Yes	1 week ago	Ciprofloxacin
+U376	Yes	1 week ago	Penicillin
+U360	Yes	1 week ago	Penicillin
+U349	Yes	1 week ago	Unsure
+U751	Yes	1 week ago	Unsure
+U811	Yes	10 to 12 months	Amoxicillin
+U827	Yes	10 to 12 months	Amoxicillin
+U830	Yes	10 to 12 months	Amoxicillin
+U702	Yes	10 to 12 months	Amoxicillin
+U750	Yes	10 to 12 months	Amoxicillin
+U787	Yes	10 to 12 months	Amoxicillin
+U789	Yes	10 to 12 months	Amoxicillin
+U634	Yes	10 to 12 months	Amoxicillin
+U502	Yes	10 to 12 months	Amoxicillin
+U564	Yes	10 to 12 months	Amoxicillin
+U570	Yes	10 to 12 months	Amoxicillin
+U589	Yes	10 to 12 months	Minocycline
+U549	Yes	10 to 12 months	"Sulfamethoxazole, Augmentin, Macrobid"
+U389	Yes	10 to 12 months	Unsure
+U523	Yes	10 to 12 months	Unsure
+U686	No	2 to 3 months	-
+U470	Yes	2 to 3 months	-
+U482	Yes	2 to 3 months	-
+U506	Yes	2 to 3 months	-
+U545	Yes	2 to 3 months	-
+U580	Yes	2 to 3 months	-
+U877	Yes	2 to 3 months	Amoxicillin
+U638	Yes	2 to 3 months	Amoxicillin
+U668	Yes	2 to 3 months	Amoxicillin
+U708	Yes	2 to 3 months	Amoxicillin
+U711	Yes	2 to 3 months	Amoxicillin
+U754	Yes	2 to 3 months	Amoxicillin
+U783	Yes	2 to 3 months	Amoxicillin
+U793	Yes	2 to 3 months	Amoxicillin
+U335	Yes	2 to 3 months	Amoxicillin
+U399	Yes	2 to 3 months	Amoxicillin
+U351	Yes	2 to 3 months	Amoxicillin
+U414	Yes	2 to 3 months	Amoxicillin
+U415	Yes	2 to 3 months	Amoxicillin
+U464	Yes	2 to 3 months	Amoxicillin
+U531	Yes	2 to 3 months	Amoxicillin
+U576	Yes	2 to 3 months	"Amoxicillin, Cefdinir"
+U559	Yes	2 to 3 months	"Amoxicillin, Z-pak"
+U514	Yes	2 to 3 months	Ampicillin
+U587	Yes	2 to 3 months	Augmentin
+U818	Yes	2 to 3 months	"Augmentin, Cephalexin, Clindamycin,"
+U314	Yes	2 to 3 months	Azithromycin
+U775	Yes	2 to 3 months	Azithromycin
+U780	Yes	2 to 3 months	Azithromycin
+U790	Yes	2 to 3 months	Azithromycin
+U393	Yes	2 to 3 months	Azithromycin
+U503	Yes	2 to 3 months	Azithromycin
+U569	Yes	2 to 3 months	Azithromycin
+U562	Yes	2 to 3 months	"Azithromycin, Penicillin"
+U703	Yes	2 to 3 months	Cefdinir
+U786	Yes	2 to 3 months	Ciprofloxacin
+U525	Yes	2 to 3 months	Ciprofloxacin
+U807	Yes	2 to 3 months	Clindamycin
+U476	Yes	2 to 3 months	Clindamycin
+U489	Yes	2 to 3 months	"Clindamycin, Azythromycin"
+U821	Yes	2 to 3 months	Doxycycline
+U471	Yes	2 to 3 months	Doxycycline
+U521	Yes	2 to 3 months	Doxycycline
+U540	Yes	2 to 3 months	Macrobid
+U568	Yes	2 to 3 months	Minocycline
+U616	Yes	2 to 3 months	Penicillin
+U358	Yes	2 to 3 months	Penicillin
+U413	Yes	2 to 3 months	Penicillin
+U422	Yes	2 to 3 months	Penicillin
+U504	Yes	2 to 3 months	Penicillin
+U536	Yes	2 to 3 months	"Penicillin, Amoxicillin"
+U899	Yes	2 to 3 months	Sarecycline
+U355	Yes	2 to 3 months	Unsure
+U312	Yes	2 to 3 months	Unsure
+U813	Yes	2 to 3 months	Unsure
+U861	Yes	2 to 3 months	Unsure
+U770	Yes	2 to 3 months	Unsure
+U387	Yes	2 to 3 months	Unsure
+U387	Yes	2 to 3 months	Unsure
+U380	Yes	2 to 3 months	Unsure
+U340	Yes	2 to 3 months	Unsure
+U329	Yes	2 to 3 months	Unsure
+U478	Yes	2 to 3 months	Unsure
+U512	Yes	2 to 3 months	Unsure
+U551	Yes	2 to 3 months	Unsure
+U563	Yes	2 to 3 months	Unsure
+U565	Yes	2 to 3 months	Unsure
+U585	Yes	2 to 3 months	Unsure
+U390	Yes	2 weeks ago	Cephalexin
+U395	No	2 years ago	Unsure
+U338	No	2 years ago	Unsure
+U315	No	3 years	Unsure
+U709	Yes	4 to 6 months	Amoxicillin
+U713	Yes	4 to 6 months	Amoxicillin
+U732	Yes	4 to 6 months	Amoxicillin
+U788	Yes	4 to 6 months	Amoxicillin
+U618	Yes	4 to 6 months	Amoxicillin
+U365	Yes	4 to 6 months	Azithromycin
+U535	Yes	4 to 6 months	Azithromycin
+U805	Yes	4 to 6 months	Azithromycin
+U716	Yes	4 to 6 months	Azithromycin
+U743	Yes	4 to 6 months	"Azithromycin, Amoxicillin"
+U872	Yes	4 to 6 months	"Doxycycline, Minocycline"
+U723	Yes	4 to 6 months	Isotretinoin
+U624	Yes	4 to 6 months	Metronidazole
+U501	Yes	4 to 6 months	"Metronidazole, Cefuroxime Axetil"
+U850	No	4 to 6 months	NA
+U886	Yes	4 to 6 months	Nitrofurantoin
+U781	Yes	4 to 6 months	Nitrofurantoin
+U808	Yes	4 to 6 months	Ondansetron
+U334	Yes	4 to 6 months	Prednisone
+U777	Yes	4 to 6 months	"Sulfamethoxazole/Trimethoprim, Nitrofuratoin, Ciprofloxacin"
+U606	Yes	4 to 6 months	Tinidazole
+U348	Yes	4 to 6 months	Unsure
+U847	Yes	4 to 6 months	Unsure
+U774	Yes	4 to 6 months	Unsure
+U797	Yes	4 to 6 months	Unsure
+U649	Yes	4 to 6 months	Unsure
+U386	Yes	4 to 6 months	Unsure
+U382	Yes	4 to 6 months	Unsure
+U333	Yes	4 to 6 months	Unsure
+U367	Yes	4 to 6 months	Unsure
+U322	Yes	5 months ago	Unsure
+U350	No	5 years ago	Unsure
+U728	unknown	7 to 9 months	-
+U753	No	7 to 9 months	-
+U623	No	7 to 9 months	-
+U864	Yes	7 to 9 months	Amoxicillin
+U884	Yes	7 to 9 months	Amoxicillin
+U731	Yes	7 to 9 months	Amoxicillin
+U739	Yes	7 to 9 months	Amoxicillin
+U772	Yes	7 to 9 months	Amoxicillin
+U785	Yes	7 to 9 months	Amoxicillin
+U603	Yes	7 to 9 months	Amoxicillin
+U658	Yes	7 to 9 months	Amoxicillin
+U687	Yes	7 to 9 months	Amoxicillin
+U438	Yes	7 to 9 months	Amoxicillin
+U640	unknown	7 to 9 months	Amoxicillin/Unsure
+U643	Yes	7 to 9 months	Amoxicillin/Unsure
+U364	Yes	7 to 9 months	Azithromycin
+U465	Yes	7 to 9 months	Azithromycin
+U557	Yes	7 to 9 months	Azithromycin
+U747	Yes	7 to 9 months	Cefdinir
+U419	Yes	7 to 9 months	Cephalexin
+U676	Yes	7 to 9 months	"Cephalexin, Sulfamethoxazole/Trimethoprim"
+U887	unknown	7 to 9 months	NA
+U420	Yes	7 to 9 months	Nitrofurantoin
+U828	Yes	7 to 9 months	Penicillin
+U485	Yes	7 to 9 months	Penicillin
+U439	Yes	7 to 9 months	"Penicillin, Erythromycin"
+U561	Yes	7 to 9 months	Streptomycin
+U891	Yes	7 to 9 months	Sulfacetamide
+U866	Yes	7 to 9 months	Unsure
+U791	Yes	7 to 9 months	Unsure
+U794	Yes	7 to 9 months	Unsure
+U320	Yes	7 to 9 months	Unsure
+U323	Yes	7 to 9 months	Unsure
+U354	Yes	7 to 9 months	Unsure
+U474	Yes	7 to 9 months	Unsure
+U547	Yes	7 to 9 months	Unsure
+U327	No	a very long time ago	Unsure
+U700	No	Did not take antibiotics in the last year	-
+U704	No	Did not take antibiotics in the last year	-
+U705	No	Did not take antibiotics in the last year	-
+U706	No	Did not take antibiotics in the last year	-
+U707	No	Did not take antibiotics in the last year	-
+U710	No	Did not take antibiotics in the last year	-
+U712	No	Did not take antibiotics in the last year	-
+U714	No	Did not take antibiotics in the last year	-
+U715	No	Did not take antibiotics in the last year	-
+U717	No	Did not take antibiotics in the last year	-
+U719	No	Did not take antibiotics in the last year	-
+U720	No	Did not take antibiotics in the last year	-
+U721	No	Did not take antibiotics in the last year	-
+U725	No	Did not take antibiotics in the last year	-
+U727	No	Did not take antibiotics in the last year	-
+U729	No	Did not take antibiotics in the last year	-
+U730	No	Did not take antibiotics in the last year	-
+U733	No	Did not take antibiotics in the last year	-
+U734	No	Did not take antibiotics in the last year	-
+U738	No	Did not take antibiotics in the last year	-
+U740	No	Did not take antibiotics in the last year	-
+U741	No	Did not take antibiotics in the last year	-
+U744	No	Did not take antibiotics in the last year	-
+U745	No	Did not take antibiotics in the last year	-
+U746	No	Did not take antibiotics in the last year	-
+U749	No	Did not take antibiotics in the last year	-
+U752	No	Did not take antibiotics in the last year	-
+U756	unknown	Did not take antibiotics in the last year	-
+U758	unknown	Did not take antibiotics in the last year	-
+U760	No	Did not take antibiotics in the last year	-
+U761	No	Did not take antibiotics in the last year	-
+U762	No	Did not take antibiotics in the last year	-
+U764	No	Did not take antibiotics in the last year	-
+U766	No	Did not take antibiotics in the last year	-
+U767	No	Did not take antibiotics in the last year	-
+U769	unknown	Did not take antibiotics in the last year	-
+U773	unknown	Did not take antibiotics in the last year	-
+U776	No	Did not take antibiotics in the last year	-
+U778	No	Did not take antibiotics in the last year	-
+U779	No	Did not take antibiotics in the last year	-
+U784	No	Did not take antibiotics in the last year	-
+U792	No	Did not take antibiotics in the last year	-
+U796	No	Did not take antibiotics in the last year	-
+U798	No	Did not take antibiotics in the last year	-
+U799	No	Did not take antibiotics in the last year	-
+U600	No	Did not take antibiotics in the last year	-
+U602	No	Did not take antibiotics in the last year	-
+U605	No	Did not take antibiotics in the last year	-
+U607	No	Did not take antibiotics in the last year	-
+U608	No	Did not take antibiotics in the last year	-
+U610	No	Did not take antibiotics in the last year	-
+U611	No	Did not take antibiotics in the last year	-
+U612	No	Did not take antibiotics in the last year	-
+U613	No	Did not take antibiotics in the last year	-
+U619	unknown	Did not take antibiotics in the last year	-
+U620	No	Did not take antibiotics in the last year	-
+U621	No	Did not take antibiotics in the last year	-
+U626	No	Did not take antibiotics in the last year	-
+U627	No	Did not take antibiotics in the last year	-
+U628	No	Did not take antibiotics in the last year	-
+U629	No	Did not take antibiotics in the last year	-
+U630	No	Did not take antibiotics in the last year	-
+U633	No	Did not take antibiotics in the last year	-
+U635	No	Did not take antibiotics in the last year	-
+U637	No	Did not take antibiotics in the last year	-
+U639	No	Did not take antibiotics in the last year	-
+U642	unknown	Did not take antibiotics in the last year	-
+U644	No	Did not take antibiotics in the last year	-
+U645	No	Did not take antibiotics in the last year	-
+U646	No	Did not take antibiotics in the last year	-
+U648	No	Did not take antibiotics in the last year	-
+U650	No	Did not take antibiotics in the last year	-
+U651	No	Did not take antibiotics in the last year	-
+U652	No	Did not take antibiotics in the last year	-
+U654	No	Did not take antibiotics in the last year	-
+U655	No	Did not take antibiotics in the last year	-
+U656	No	Did not take antibiotics in the last year	-
+U660	No	Did not take antibiotics in the last year	-
+U661	No	Did not take antibiotics in the last year	-
+U662	No	Did not take antibiotics in the last year	-
+U663	unknown	Did not take antibiotics in the last year	-
+U665	No	Did not take antibiotics in the last year	-
+U666	No	Did not take antibiotics in the last year	-
+U667	No	Did not take antibiotics in the last year	-
+U669	No	Did not take antibiotics in the last year	-
+U670	No	Did not take antibiotics in the last year	-
+U671	No	Did not take antibiotics in the last year	-
+U672	No	Did not take antibiotics in the last year	-
+U673	No	Did not take antibiotics in the last year	-
+U677	No	Did not take antibiotics in the last year	-
+U679	No	Did not take antibiotics in the last year	-
+U680	No	Did not take antibiotics in the last year	-
+U681	No	Did not take antibiotics in the last year	-
+U682	No	Did not take antibiotics in the last year	-
+U683	unknown	Did not take antibiotics in the last year	-
+U689	No	Did not take antibiotics in the last year	-
+U801	No	Did not take antibiotics in the last year	NA
+U802	No	Did not take antibiotics in the last year	NA
+U804	No	Did not take antibiotics in the last year	NA
+U809	No	Did not take antibiotics in the last year	NA
+U810	No	Did not take antibiotics in the last year	NA
+U812	No	Did not take antibiotics in the last year	NA
+U814	No	Did not take antibiotics in the last year	NA
+U816	No	Did not take antibiotics in the last year	NA
+U817	No	Did not take antibiotics in the last year	NA
+U819	No	Did not take antibiotics in the last year	NA
+U820	No	Did not take antibiotics in the last year	NA
+U822	No	Did not take antibiotics in the last year	NA
+U823	No	Did not take antibiotics in the last year	NA
+U824	unknown	Did not take antibiotics in the last year	NA
+U825	No	Did not take antibiotics in the last year	NA
+U826	No	Did not take antibiotics in the last year	NA
+U829	No	Did not take antibiotics in the last year	NA
+U831	unknown	Did not take antibiotics in the last year	NA
+U832	No	Did not take antibiotics in the last year	NA
+U833	No	Did not take antibiotics in the last year	NA
+U835	No	Did not take antibiotics in the last year	NA
+U835	No	Did not take antibiotics in the last year	NA
+U836	No	Did not take antibiotics in the last year	NA
+U837	No	Did not take antibiotics in the last year	NA
+U840	No	Did not take antibiotics in the last year	NA
+U841	No	Did not take antibiotics in the last year	NA
+U842	No	Did not take antibiotics in the last year	NA
+U845	No	Did not take antibiotics in the last year	NA
+U846	No	Did not take antibiotics in the last year	NA
+U849	No	Did not take antibiotics in the last year	NA
+U851	No	Did not take antibiotics in the last year	NA
+U852	No	Did not take antibiotics in the last year	NA
+U855	No	Did not take antibiotics in the last year	NA
+U858	No	Did not take antibiotics in the last year	NA
+U859	No	Did not take antibiotics in the last year	NA
+U862	No	Did not take antibiotics in the last year	NA
+U867	No	Did not take antibiotics in the last year	NA
+U868	No	Did not take antibiotics in the last year	NA
+U870	No	Did not take antibiotics in the last year	NA
+U871	No	Did not take antibiotics in the last year	NA
+U873	No	Did not take antibiotics in the last year	NA
+U876	No	Did not take antibiotics in the last year	NA
+U879	No	Did not take antibiotics in the last year	NA
+U880	No	Did not take antibiotics in the last year	NA
+U881	No	Did not take antibiotics in the last year	NA
+U882	No	Did not take antibiotics in the last year	NA
+U883	No	Did not take antibiotics in the last year	NA
+U885	No	Did not take antibiotics in the last year	NA
+U888	No	Did not take antibiotics in the last year	NA
+U890	No	Did not take antibiotics in the last year	NA
+U893	No	Did not take antibiotics in the last year	NA
+U894	unknown	Did not take antibiotics in the last year	NA
+U895	No	Did not take antibiotics in the last year	NA
+U896	No	Did not take antibiotics in the last year	NA
+U371	No	Feb 11th 2017	Bactrim
+U353	No	February	Azithromycin
+U373	No	February	Ciprofloxacin
+U378	No	March	Unsure
+U001	unknown	unknown	-
+U002	unknown	unknown	-
+U003	unknown	unknown	-
+U004	unknown	unknown	-
+U005	unknown	unknown	-
+U006	unknown	unknown	-
+U007	unknown	unknown	-
+U008	unknown	unknown	-
+U009	unknown	unknown	-
+U010	unknown	unknown	-
+U011	unknown	unknown	-
+U013	unknown	unknown	-
+U014	unknown	unknown	-
+U015	unknown	unknown	-
+U016	unknown	unknown	-
+U017	unknown	unknown	-
+U018	unknown	unknown	-
+U019	unknown	unknown	-
+U020	unknown	unknown	-
+U021	unknown	unknown	-
+U022	unknown	unknown	-
+U023	unknown	unknown	-
+U024	unknown	unknown	-
+U025	unknown	unknown	-
+U026	unknown	unknown	-
+U027	unknown	unknown	-
+U028	unknown	unknown	-
+U029	unknown	unknown	-
+U030	unknown	unknown	-
+U031	unknown	unknown	-
+U032	unknown	unknown	-
+U033	unknown	unknown	-
+U034	unknown	unknown	-
+U035	unknown	unknown	-
+U036	unknown	unknown	-
+U037	unknown	unknown	-
+U041	unknown	unknown	-
+U042	unknown	unknown	-
+U042	unknown	unknown	-
+U043	unknown	unknown	-
+U044	unknown	unknown	-
+U045	unknown	unknown	-
+U046	unknown	unknown	-
+U047	unknown	unknown	-
+U048	unknown	unknown	-
+U049	unknown	unknown	-
+U050	unknown	unknown	-
+U051	unknown	unknown	-
+U052	unknown	unknown	-
+U054	unknown	unknown	-
+U055	unknown	unknown	-
+U056	unknown	unknown	-
+U057	unknown	unknown	-
+U058	unknown	unknown	-
+U060	unknown	unknown	-
+U061	unknown	unknown	-
+U062	unknown	unknown	-
+U063	unknown	unknown	-
+U064	unknown	unknown	-
+U065	unknown	unknown	-
+U066	unknown	unknown	-
+U067	unknown	unknown	-
+U068	unknown	unknown	-
+U069	unknown	unknown	-
+U070	unknown	unknown	-
+U071	unknown	unknown	-
+U072	unknown	unknown	-
+U073	unknown	unknown	-
+U074	unknown	unknown	-
+U075	unknown	unknown	-
+U076	unknown	unknown	-
+U078	unknown	unknown	-
+U080	unknown	unknown	-
+U081	unknown	unknown	-
+U082	unknown	unknown	-
+U083	unknown	unknown	-
+U084	unknown	unknown	-
+U085	unknown	unknown	-
+U086	unknown	unknown	-
+U087	unknown	unknown	-
+U088	unknown	unknown	-
+U089	unknown	unknown	-
+U090	unknown	unknown	-
+U091	unknown	unknown	-
+U094	unknown	unknown	-
+U095	unknown	unknown	-
+U096	unknown	unknown	-
+U097	unknown	unknown	-
+U098	unknown	unknown	-
+U099	unknown	unknown	-
+U100	unknown	unknown	-
+U101	unknown	unknown	-
+U102	unknown	unknown	-
+U103	unknown	unknown	-
+U104	unknown	unknown	-
+U105	unknown	unknown	-
+U106	unknown	unknown	-
+U107	unknown	unknown	-
+U108	unknown	unknown	-
+U110	unknown	unknown	-
+U112	unknown	unknown	-
+U113	unknown	unknown	-
+U114	unknown	unknown	-
+U115	unknown	unknown	-
+U116	unknown	unknown	-
+U117	unknown	unknown	-
+U118	unknown	unknown	-
+U119	unknown	unknown	-
+U120	unknown	unknown	-
+U121	unknown	unknown	-
+U122	unknown	unknown	-
+U123	unknown	unknown	-
+U124	unknown	unknown	-
+U125	unknown	unknown	-
+U126	unknown	unknown	-
+U127	unknown	unknown	-
+U128	unknown	unknown	-
+U129	unknown	unknown	-
+U130	unknown	unknown	-
+U131	unknown	unknown	-
+U132	unknown	unknown	-
+U133	unknown	unknown	-
+U134	unknown	unknown	-
+U135	unknown	unknown	-
+U136	unknown	unknown	-
+U137	unknown	unknown	-
+U138	unknown	unknown	-
+U139	unknown	unknown	-
+U140	unknown	unknown	-
+U141	unknown	unknown	-
+U142	unknown	unknown	-
+U143	unknown	unknown	-
+U144	unknown	unknown	-
+U145	unknown	unknown	-
+U147	unknown	unknown	-
+U148	unknown	unknown	-
+U149	unknown	unknown	-
+U150	unknown	unknown	-
+U151	unknown	unknown	-
+U152	unknown	unknown	-
+U153	unknown	unknown	-
+U154	unknown	unknown	-
+U155	unknown	unknown	-
+U156	unknown	unknown	-
+U157	unknown	unknown	-
+U158	unknown	unknown	-
+U159	unknown	unknown	-
+U160	unknown	unknown	-
+U162	unknown	unknown	-
+U163	unknown	unknown	-
+U164	unknown	unknown	-
+U165	unknown	unknown	-
+U166	unknown	unknown	-
+U167	unknown	unknown	-
+U168	unknown	unknown	-
+U169	unknown	unknown	-
+U170	unknown	unknown	-
+U171	unknown	unknown	-
+U172	unknown	unknown	-
+U174	unknown	unknown	-
+U175	unknown	unknown	-
+U176	unknown	unknown	-
+U177	unknown	unknown	-
+U178	unknown	unknown	-
+U179	unknown	unknown	-
+U181	unknown	unknown	-
+U182	unknown	unknown	-
+U183	unknown	unknown	-
+U185	unknown	unknown	-
+U186	unknown	unknown	-
+U187	unknown	unknown	-
+U188	unknown	unknown	-
+U189	unknown	unknown	-
+U190	unknown	unknown	-
+U191	unknown	unknown	-
+U192	unknown	unknown	-
+U193	unknown	unknown	-
+U194	unknown	unknown	-
+U195	unknown	unknown	-
+U196	unknown	unknown	-
+U197	unknown	unknown	-
+U198	unknown	unknown	-
+U199	unknown	unknown	-
+U200	unknown	unknown	-
+U201	unknown	unknown	-
+U202	unknown	unknown	-
+U203	unknown	unknown	-
+U210	unknown	unknown	-
+U211	unknown	unknown	-
+U212	unknown	unknown	-
+U213	unknown	unknown	-
+U214	unknown	unknown	-
+U215	unknown	unknown	-
+U216	unknown	unknown	-
+U217	unknown	unknown	-
+U218	unknown	unknown	-
+U219	unknown	unknown	-
+U220	unknown	unknown	-
+U221	unknown	unknown	-
+U222	unknown	unknown	-
+U223	unknown	unknown	-
+U224	unknown	unknown	-
+U225	unknown	unknown	-
+U226	unknown	unknown	-
+U227	unknown	unknown	-
+U228	unknown	unknown	-
+U229	unknown	unknown	-
+U230	unknown	unknown	-
+U231	unknown	unknown	-
+U232	unknown	unknown	-
+U233	unknown	unknown	-
+U234	unknown	unknown	-
+U235	unknown	unknown	-
+U236	unknown	unknown	-
+U237	unknown	unknown	-
+U238	unknown	unknown	-
+U241	unknown	unknown	-
+U242	unknown	unknown	-
+U243	unknown	unknown	-
+U246	unknown	unknown	-
+U247	unknown	unknown	-
+U248	unknown	unknown	-
+U249	unknown	unknown	-
+U250	unknown	unknown	-
+U251	unknown	unknown	-
+U252	unknown	unknown	-
+U253	unknown	unknown	-
+U254	unknown	unknown	-
+U255	unknown	unknown	-
+U256	unknown	unknown	-
+U257	unknown	unknown	-
+U258	unknown	unknown	-
+U259	unknown	unknown	-
+U260	unknown	unknown	-
+U261	unknown	unknown	-
+U262	unknown	unknown	-
+U263	unknown	unknown	-
+U264	unknown	unknown	-
+U265	unknown	unknown	-
+U266	unknown	unknown	-
+U267	unknown	unknown	-
+U268	unknown	unknown	-
+U269	unknown	unknown	-
+U270	unknown	unknown	-
+U271	unknown	unknown	-
+U272	unknown	unknown	-
+U273	unknown	unknown	-
+U274	unknown	unknown	-
+U275	unknown	unknown	-
+U276	unknown	unknown	-
+U277	unknown	unknown	-
+U279	unknown	unknown	-
+U280	unknown	unknown	-
+U281	unknown	unknown	-
+U282	unknown	unknown	-
+U283	unknown	unknown	-
+U284	unknown	unknown	-
+U285	unknown	unknown	-
+U286	unknown	unknown	-
+U287	unknown	unknown	-
+U288	unknown	unknown	-
+U290	unknown	unknown	-
+U291	unknown	unknown	-
+U292	unknown	unknown	-
+U294	unknown	unknown	-
+U295	unknown	unknown	-
+U296	unknown	unknown	-
+U297	unknown	unknown	-
+U299	unknown	unknown	-
+U300	unknown	unknown	-
+U301	unknown	unknown	-
+U302	unknown	unknown	-
+np1	unknown	unknown	-
+np2	unknown	unknown	-
+np3	unknown	unknown	-
+U310	No	unknown	-
+U311	No	unknown	-
+U316	No	unknown	-
+U317	No	unknown	-
+U318	No	unknown	-
+U326	No	unknown	-
+U330	No	unknown	-
+U331	unknown	unknown	-
+U332	No	unknown	-
+U337	Yes	unknown	-
+U341	No	unknown	-
+U343	No	unknown	-
+U346	No	unknown	-
+U347	No	unknown	-
+U352	No	unknown	-
+U357	No	unknown	-
+U362	unknown	unknown	-
+U366	No	unknown	-
+U368	No	unknown	-
+U369	No	unknown	-
+U370	No	unknown	-
+U372	No	unknown	-
+U375	Yes	unknown	-
+U379	No	unknown	-
+U384	No	unknown	-
+U385	No	unknown	-
+U388	No	unknown	-
+U391	unknown	unknown	-
+U392	No	unknown	-
+U397	No	unknown	-
+U400	No	unknown	-
+U401	No	unknown	-
+U405	No	unknown	-
+U406	No	unknown	-
+U407	No	unknown	-
+U408	No	unknown	-
+U410	No	unknown	-
+U411	No	unknown	-
+U412	No	unknown	-
+U417	No	unknown	-
+U418	No	unknown	-
+U421	No	unknown	-
+U424	No	unknown	-
+U426	No	unknown	-
+U427	No	unknown	-
+U428	No	unknown	-
+U430	No	unknown	-
+U431	No	unknown	-
+U432	No	unknown	-
+U434	unknown	unknown	-
+U436	No	unknown	-
+U437	Yes	unknown	-
+U441	No	unknown	-
+U443	No	unknown	-
+U444	unknown	unknown	-
+U445	No	unknown	-
+U446	No	unknown	-
+U448	No	unknown	-
+U449	No	unknown	-
+U450	No	unknown	-
+U452	No	unknown	-
+U453	No	unknown	-
+U454	No	unknown	-
+U455	No	unknown	-
+U456	No	unknown	-
+U457	No	unknown	-
+U458	No	unknown	-
+U459	No	unknown	-
+U461	No	unknown	-
+U462	No	unknown	-
+U463	No	unknown	-
+U466	No	unknown	-
+U467	No	unknown	-
+U468	No	unknown	-
+U469	No	unknown	-
+U472	No	unknown	-
+U473	No	unknown	-
+U475	unknown	unknown	-
+U477	No	unknown	-
+U479	No	unknown	-
+U481	No	unknown	-
+U483	No	unknown	-
+U484	No	unknown	-
+U486	No	unknown	-
+U487	unknown	unknown	-
+U500	No	unknown	-
+U507	No	unknown	-
+U508	No	unknown	-
+U509	No	unknown	-
+U510	unknown	unknown	-
+U511	No	unknown	-
+U513	No	unknown	-
+U516	No	unknown	-
+U517	No	unknown	-
+U518	No	unknown	-
+U519	No	unknown	-
+U520	No	unknown	-
+U522	No	unknown	-
+U524	No	unknown	-
+U526	No	unknown	-
+U527	No	unknown	-
+U528	unknown	unknown	-
+U529	No	unknown	-
+U530	No	unknown	-
+U532	No	unknown	-
+U533	No	unknown	-
+U534	No	unknown	-
+U541	No	unknown	-
+U542	No	unknown	-
+U543	No	unknown	-
+U544	No	unknown	-
+U548	unknown	unknown	-
+U550	No	unknown	-
+U552	No	unknown	-
+U553	No	unknown	-
+U555	No	unknown	-
+U556	No	unknown	-
+U558	No	unknown	-
+U566	unknown	unknown	-
+U567	unknown	unknown	-
+U571	unknown	unknown	-
+U572	No	unknown	-
+U573	No	unknown	-
+U574	No	unknown	-
+U575	No	unknown	-
+U577	No	unknown	-
+U578	No	unknown	-
+U579	No	unknown	-
+U583	No	unknown	-
+U584	No	unknown	-
+U586	No	unknown	-
+U588	No	unknown	-
+U691	unknown	unknown	-
+U736	unknown	unknown	-
+U768	unknown	unknown	-
+U803	unknown	unknown	-
+U844	unknown	unknown	-
+U848	unknown	unknown	-
+U875	unknown	unknown	-
+U429	Yes	unknown	Amoxicillin
+U425	Yes	unknown	"Amoxicillin, penicillin"
+U416	Yes	unknown	Azithromycin
+U423	Yes	unknown	Azithromycin
+U447	No	unknown	Cephalexin
+U488	Yes	unknown	Cephalexin
+U460	Yes	unknown	Doxycycline
+U433	Yes	unknown	Minocycline
+U404	Yes	unknown	"Minocycline, Metronidazole, Trimethoprim, Tinidazole, Rifampin, Clindamycin"
+U546	No	unknown	NA
+U554	No	unknown	NA
+U342	No	unknown	Unsure
+U402	Yes	unknown	Unsure
+U442	Yes	unknown	Unsure
+U480	Yes	unknown	Unsure
+U394	No	unknown	Unsure

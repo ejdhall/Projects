@@ -1,0 +1,807 @@
+participant_id	antibiotic_past_year	antibiotic_date	antibiotic_name
+U001	unknown	unknown	-
+U002	unknown	unknown	-
+U003	unknown	unknown	-
+U004	unknown	unknown	-
+U005	unknown	unknown	-
+U006	unknown	unknown	-
+U007	unknown	unknown	-
+U008	unknown	unknown	-
+U009	unknown	unknown	-
+U010	unknown	unknown	-
+U011	unknown	unknown	-
+U013	unknown	unknown	-
+U014	unknown	unknown	-
+U015	unknown	unknown	-
+U016	unknown	unknown	-
+U017	unknown	unknown	-
+U018	unknown	unknown	-
+U019	unknown	unknown	-
+U020	unknown	unknown	-
+U021	unknown	unknown	-
+U022	unknown	unknown	-
+U023	unknown	unknown	-
+U024	unknown	unknown	-
+U025	unknown	unknown	-
+U026	unknown	unknown	-
+U027	unknown	unknown	-
+U028	unknown	unknown	-
+U029	unknown	unknown	-
+U030	unknown	unknown	-
+U031	unknown	unknown	-
+U032	unknown	unknown	-
+U033	unknown	unknown	-
+U034	unknown	unknown	-
+U035	unknown	unknown	-
+U036	unknown	unknown	-
+U037	unknown	unknown	-
+U041	unknown	unknown	-
+U042	unknown	unknown	-
+U042	unknown	unknown	-
+U043	unknown	unknown	-
+U044	unknown	unknown	-
+U045	unknown	unknown	-
+U046	unknown	unknown	-
+U047	unknown	unknown	-
+U048	unknown	unknown	-
+U049	unknown	unknown	-
+U050	unknown	unknown	-
+U051	unknown	unknown	-
+U052	unknown	unknown	-
+U053	Yes	During the course of the study	-
+U054	unknown	unknown	-
+U055	unknown	unknown	-
+U056	unknown	unknown	-
+U057	unknown	unknown	-
+U058	unknown	unknown	-
+U059	Yes	During the course of the study	-
+U060	unknown	unknown	-
+U061	unknown	unknown	-
+U062	unknown	unknown	-
+U063	unknown	unknown	-
+U064	unknown	unknown	-
+U065	unknown	unknown	-
+U066	unknown	unknown	-
+U067	unknown	unknown	-
+U068	unknown	unknown	-
+U069	unknown	unknown	-
+U070	unknown	unknown	-
+U071	unknown	unknown	-
+U072	unknown	unknown	-
+U073	unknown	unknown	-
+U074	unknown	unknown	-
+U075	unknown	unknown	-
+U076	unknown	unknown	-
+U077	Yes	During the course of the study	-
+U078	unknown	unknown	-
+U080	unknown	unknown	-
+U081	unknown	unknown	-
+U082	unknown	unknown	-
+U083	unknown	unknown	-
+U084	unknown	unknown	-
+U085	unknown	unknown	-
+U086	unknown	unknown	-
+U087	unknown	unknown	-
+U088	unknown	unknown	-
+U089	unknown	unknown	-
+U090	unknown	unknown	-
+U091	unknown	unknown	-
+U092	Yes	During the course of the study	-
+U093	Yes	During the course of the study	-
+U094	unknown	unknown	-
+U095	unknown	unknown	-
+U096	unknown	unknown	-
+U097	unknown	unknown	-
+U098	unknown	unknown	-
+U099	unknown	unknown	-
+U100	unknown	unknown	-
+U101	unknown	unknown	-
+U102	unknown	unknown	-
+U103	unknown	unknown	-
+U104	unknown	unknown	-
+U105	unknown	unknown	-
+U106	unknown	unknown	-
+U107	unknown	unknown	-
+U108	unknown	unknown	-
+U109	Yes	During the course of the study	-
+U110	unknown	unknown	-
+U111	Yes	During the course of the study	-
+U112	unknown	unknown	-
+U113	unknown	unknown	-
+U114	unknown	unknown	-
+U115	unknown	unknown	-
+U116	unknown	unknown	-
+U117	unknown	unknown	-
+U118	unknown	unknown	-
+U119	unknown	unknown	-
+U120	unknown	unknown	-
+U121	unknown	unknown	-
+U122	unknown	unknown	-
+U123	unknown	unknown	-
+U124	unknown	unknown	-
+U125	unknown	unknown	-
+U126	unknown	unknown	-
+U127	unknown	unknown	-
+U128	unknown	unknown	-
+U129	unknown	unknown	-
+U130	unknown	unknown	-
+U131	unknown	unknown	-
+U132	unknown	unknown	-
+U133	unknown	unknown	-
+U134	unknown	unknown	-
+U135	unknown	unknown	-
+U136	unknown	unknown	-
+U137	unknown	unknown	-
+U138	unknown	unknown	-
+U139	unknown	unknown	-
+U140	unknown	unknown	-
+U141	unknown	unknown	-
+U142	unknown	unknown	-
+U143	unknown	unknown	-
+U144	unknown	unknown	-
+U145	unknown	unknown	-
+U146	Yes	During the course of the study	-
+U147	unknown	unknown	-
+U148	unknown	unknown	-
+U149	unknown	unknown	-
+U150	unknown	unknown	-
+U151	unknown	unknown	-
+U152	unknown	unknown	-
+U153	unknown	unknown	-
+U154	unknown	unknown	-
+U155	unknown	unknown	-
+U156	unknown	unknown	-
+U157	unknown	unknown	-
+U158	unknown	unknown	-
+U159	unknown	unknown	-
+U160	unknown	unknown	-
+U161	Yes	During the course of the study	-
+U162	unknown	unknown	-
+U163	unknown	unknown	-
+U164	unknown	unknown	-
+U165	unknown	unknown	-
+U166	unknown	unknown	-
+U167	unknown	unknown	-
+U168	unknown	unknown	-
+U169	unknown	unknown	-
+U170	unknown	unknown	-
+U171	unknown	unknown	-
+U172	unknown	unknown	-
+U174	unknown	unknown	-
+U175	unknown	unknown	-
+U176	unknown	unknown	-
+U177	unknown	unknown	-
+U178	unknown	unknown	-
+U179	unknown	unknown	-
+U180	Yes	During the course of the study	-
+U181	unknown	unknown	-
+U182	unknown	unknown	-
+U183	unknown	unknown	-
+U184	Yes	During the course of the study	-
+U185	unknown	unknown	-
+U186	unknown	unknown	-
+U187	unknown	unknown	-
+U188	unknown	unknown	-
+U189	unknown	unknown	-
+U190	unknown	unknown	-
+U191	unknown	unknown	-
+U192	unknown	unknown	-
+U193	unknown	unknown	-
+U194	unknown	unknown	-
+U195	unknown	unknown	-
+U196	unknown	unknown	-
+U197	unknown	unknown	-
+U198	unknown	unknown	-
+U199	unknown	unknown	-
+U200	unknown	unknown	-
+U201	unknown	unknown	-
+U202	unknown	unknown	-
+U203	unknown	unknown	-
+U210	unknown	unknown	-
+U211	unknown	unknown	-
+U212	unknown	unknown	-
+U213	unknown	unknown	-
+U214	unknown	unknown	-
+U215	unknown	unknown	-
+U216	unknown	unknown	-
+U217	unknown	unknown	-
+U218	unknown	unknown	-
+U219	unknown	unknown	-
+U220	unknown	unknown	-
+U221	unknown	unknown	-
+U222	unknown	unknown	-
+U223	unknown	unknown	-
+U224	unknown	unknown	-
+U225	unknown	unknown	-
+U226	unknown	unknown	-
+U227	unknown	unknown	-
+U228	unknown	unknown	-
+U229	unknown	unknown	-
+U230	unknown	unknown	-
+U231	unknown	unknown	-
+U232	unknown	unknown	-
+U233	unknown	unknown	-
+U234	unknown	unknown	-
+U235	unknown	unknown	-
+U236	unknown	unknown	-
+U237	unknown	unknown	-
+U238	unknown	unknown	-
+U241	unknown	unknown	-
+U242	unknown	unknown	-
+U243	unknown	unknown	-
+U246	unknown	unknown	-
+U247	unknown	unknown	-
+U248	unknown	unknown	-
+U249	unknown	unknown	-
+U250	unknown	unknown	-
+U251	unknown	unknown	-
+U252	unknown	unknown	-
+U253	unknown	unknown	-
+U254	unknown	unknown	-
+U255	unknown	unknown	-
+U256	unknown	unknown	-
+U257	unknown	unknown	-
+U258	unknown	unknown	-
+U259	unknown	unknown	-
+U260	unknown	unknown	-
+U261	unknown	unknown	-
+U262	unknown	unknown	-
+U263	unknown	unknown	-
+U264	unknown	unknown	-
+U265	unknown	unknown	-
+U266	unknown	unknown	-
+U267	unknown	unknown	-
+U268	unknown	unknown	-
+U269	unknown	unknown	-
+U270	unknown	unknown	-
+U271	unknown	unknown	-
+U272	unknown	unknown	-
+U273	unknown	unknown	-
+U274	unknown	unknown	-
+U275	unknown	unknown	-
+U276	unknown	unknown	-
+U277	unknown	unknown	-
+U279	unknown	unknown	-
+U280	unknown	unknown	-
+U281	unknown	unknown	-
+U282	unknown	unknown	-
+U283	unknown	unknown	-
+U284	unknown	unknown	-
+U285	unknown	unknown	-
+U286	unknown	unknown	-
+U287	unknown	unknown	-
+U288	unknown	unknown	-
+U290	unknown	unknown	-
+U291	unknown	unknown	-
+U292	unknown	unknown	-
+U294	unknown	unknown	-
+U295	unknown	unknown	-
+U296	unknown	unknown	-
+U297	unknown	unknown	-
+U299	unknown	unknown	-
+U300	unknown	unknown	-
+U301	unknown	unknown	-
+U302	unknown	unknown	-
+np1	unknown	unknown	-
+np2	unknown	unknown	-
+np3	unknown	unknown	-
+U310	No	unknown	-
+U311	No	unknown	-
+U312	Yes	2 months ago	Unsure
+U314	Yes	November 2016	Azithromycin
+U315	No	3 years	Unsure
+U316	No	unknown	-
+U317	No	unknown	-
+U318	No	unknown	-
+U319	Yes	Feb 2017	Macrobid
+U320	Yes	June	Unsure
+U321	No	December 2016	Cefdinir
+U322	Yes	5 months ago	Unsure
+U323	Yes	May	Unsure
+U325	Yes	During the course of the study	Cefadroxil
+U326	No	unknown	-
+U327	No	a very long time ago	Unsure
+U328	Yes	During the course of the study	Cefadroxil
+U329	Yes	first semester	Unsure
+U330	No	unknown	-
+U331	unknown	unknown	-
+U332	No	unknown	-
+U333	Yes	September	Unsure
+U334	Yes	Four months ago	Prednisone
+U335	Yes	October 2016	Amoxicillin
+U336	Yes	December 2016	Augmenten
+U337	Yes	unknown	-
+U338	No	a couple years back	Unsure
+U339	Yes	During one week prior to study	Cefadroxil
+U340	Yes	a few months ago	Unsure
+U341	No	unknown	-
+U342	No	unknown	Unsure
+U343	No	unknown	-
+U344	Yes	During the course of the study	Ciprofloxacin
+U345	Yes	April 26	Penicillin
+U346	No	unknown	-
+U347	No	unknown	-
+U348	Yes	~6 months	Unsure
+U349	Yes	During one week prior to study	Unsure
+U350	No	5 years ago	Unsure
+U351	Yes	November	Amoxicillin
+U352	No	unknown	-
+U353	Yes	February	Azithromycin
+U354	Yes	Sometime last May	Unsure
+U355	Yes	November 2016	Unsure
+U356	Yes	March 1	Amoxicillin
+U357	No	unknown	-
+U358	Yes	3 months	Penicillin
+U360	Yes	January/4 months ago	Penicillin
+U362	unknown	unknown	-
+U363	Yes	december	Amoxicillin
+U364	Yes	8 months	Azithromycin
+U365	Yes	4 months	Azithromycin
+U366	No	unknown	-
+U367	Yes	September	Unsure
+U368	No	unknown	-
+U369	No	unknown	-
+U370	No	unknown	-
+U371	Yes	Feb 11th 2017	Bactrim
+U372	No	unknown	-
+U373	Yes	February	Ciprofloxacin
+U375	Yes	unknown	-
+U376	Yes	January 15	Penicillin
+U377	Yes	During the course of the study	Azithromycin
+U378	Yes	March	Unsure
+U379	No	unknown	-
+U380	Yes	3 months ago	Unsure
+U381	Yes	1 month ago	-
+U382	Yes	around 6 months ago	Unsure
+U383	Yes	I think in December.	Minocycline
+U384	No	unknown	-
+U385	No	unknown	-
+U386	Yes	4ish months ago	Unsure
+U387	Yes	2-3 months ago	Unsure
+U387	Yes	2-3 months ago	Unsure
+U388	No	unknown	-
+U389	Yes	10 months ago	Unsure
+U390	Yes	2 weeks ago	Cephalexin
+U391	unknown	unknown	-
+U392	No	unknown	-
+U393	Yes	November	Azithromycin
+U394	No	Winter 2016	Unsure
+U395	No	2 years ago	Unsure
+U396	Yes	December	Azithromycin
+U397	No	unknown	-
+U398	Yes	1 month ago	Unsure
+U399	Yes	October 2016	Amoxicillin
+U400	No	unknown	-
+U401	No	unknown	-
+U402	Yes, sometime between April 1 and July 31 of 2017	unknown	Unsure
+U404	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September), Yes, sometime between April 1 and July 31 of 2017, Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Minocycline, Metronidazole, Trimethoprim, Tinidazole, Rifampin, Clindamycin
+U405	No	unknown	-
+U406	No	unknown	-
+U407	No	unknown	-
+U408	No	unknown	-
+U410	No	unknown	-
+U411	No	unknown	-
+U412	No	unknown	-
+U413	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September)	unknown	Penicillin
+U414	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September)	unknown	Amoxicillin
+U415	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September)	unknown	Amoxicillin
+U416	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Azithromycin
+U417	No	unknown	-
+U418	No	unknown	-
+U419	Yes, sometime between April 1 and July 31 of 2017	unknown	Cephalexin
+U420	Yes, sometime between April 1 and July 31 of 2017	unknown	Nitrofurantoin
+U421	No	unknown	-
+U422	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September)	unknown	Penicillin
+U423	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Azithromycin
+U424	No	unknown	-
+U425	Yes, sometime between April 1 and July 31 of 2017, Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Amoxicillin, penicillin
+U426	No	unknown	-
+U427	No	unknown	-
+U428	No	unknown	-
+U429	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Amoxicillin
+U430	No	unknown	-
+U431	No	unknown	-
+U432	No	unknown	-
+U433	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Minocycline
+U434	unknown	unknown	-
+U436	No	unknown	-
+U437	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	-
+U438	Yes, sometime between April 1 and July 31 of 2017	unknown	Amoxicillin
+U439	Yes, sometime between April 1 and July 31 of 2017, Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Penicillin, Erythromycin
+U441	No	unknown	-
+U442	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Unsure
+U443	No	unknown	-
+U444	unknown	unknown	-
+U445	No	unknown	-
+U446	No	unknown	-
+U447	Yes, but after providing stool samples	unknown	Cephalexin
+U448	No	unknown	-
+U449	No	unknown	-
+U450	No	unknown	-
+U452	No	unknown	-
+U453	No	unknown	-
+U454	No	unknown	-
+U455	No	unknown	-
+U456	No	unknown	-
+U457	No	unknown	-
+U458	No	unknown	-
+U459	No	unknown	-
+U460	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Doxycycline
+U461	No	unknown	-
+U462	No	unknown	-
+U463	No	unknown	-
+U464	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September)	unknown	Amoxicillin
+U465	Yes, sometime between April 1 and July 31 of 2017	unknown	Azithromycin
+U466	No	unknown	-
+U467	No	unknown	-
+U468	No	unknown	-
+U469	No	unknown	-
+U470	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September), Yes, sometime between April 1 and July 31 of 2017, No	unknown	-
+U471	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September), Yes, sometime between April 1 and July 31 of 2017	unknown	Doxycycline
+U472	No	unknown	-
+U473	No	unknown	-
+U474	Yes, sometime between April 1 and July 31 of 2017	unknown	Unsure
+U475	unknown	unknown	-
+U476	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Clindamycin
+U477	No	unknown	-
+U478	Yes, sometime between April 1 and July 31 of 2017, Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Unsure
+U479	No	unknown	-
+U480	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Unsure
+U481	No	unknown	-
+U482	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September)	unknown	-
+U483	No	unknown	-
+U484	No	unknown	-
+U485	Yes, sometime between April 1 and July 31 of 2017	unknown	Penicillin
+U486	No	unknown	-
+U487	unknown	unknown	-
+U488	Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Cephalexin
+U489	Yes, sometime within the 2 months prior to collecting fecal samples for this course. (i.e. sometime in August or September), Yes, sometime between September 1 of 2016 and March 31 of 2017	unknown	Clindamycin, Azythromycin
+U500	No	unknown	-
+U501	Yes	6 months prior	Metronidazole, Cefuroxime Axetil
+U502	Yes	within 10-16 months prior	Amoxicillin
+U503	Yes	within 2 months prior	Azithromycin
+U504	Yes	within 2 months prior	Penicillin
+U506	Yes	within 2 months prior	-
+U507	No	unknown	-
+U508	No	unknown	-
+U509	No	unknown	-
+U510	unknown	unknown	-
+U511	No	unknown	-
+U512	Yes	within 2 months prior	Unsure
+U513	No	unknown	-
+U514	Yes	within 2 months prior	Ampicillin
+U516	No	unknown	-
+U517	No	unknown	-
+U518	No	unknown	-
+U519	No	unknown	-
+U520	No	unknown	-
+U521	Yes	within 2 months prior, within 6-10 months prior, within 10-16 months prior	Doxycycline
+U522	No	unknown	-
+U523	Yes	within 10-16 months prior	Unsure
+U524	No	unknown	-
+U525	Yes	within 2 months prior	Ciprofloxacin
+U526	No	unknown	-
+U527	No	unknown	-
+U528	unknown	unknown	-
+U529	No	unknown	-
+U530	No	unknown	-
+U531	Yes	within 2 months prior, within 6-10 months prior	Amoxicillin
+U532	No	unknown	-
+U533	No	unknown	-
+U534	No	unknown	-
+U535	Yes	4 months prior, within 6-10 months prior	Azithromycin
+U536	Yes	within 2 months prior	Penicillin, Amoxicillin
+U540	Yes	within 2 months prior	Macrobid
+U541	No	unknown	-
+U542	No	unknown	-
+U543	No	unknown	-
+U544	No	unknown	-
+U545	Yes	within 2 months prior	-
+U546	No	unknown	NA
+U547	Yes	within 6-10 months prior, within 10-16 months prior	Unsure
+U548	unknown	unknown	-
+U549	Yes	within 10-16 months prior	Sulfamethoxazole, Augmentin, Macrobid
+U550	No	unknown	-
+U551	Yes	within 2 months prior	Unsure
+U552	No	unknown	-
+U553	No	unknown	-
+U554	No	unknown	NA
+U555	No	unknown	-
+U556	No	unknown	-
+U557	Yes	within 6-10 months prior, within 10-16 months prior	Azithromycin
+U558	No	unknown	-
+U559	Yes	within 2 months prior	Amoxicillin, Z-pak
+U561	Yes	within 6-10 months prior	Streptomycin
+U562	Yes	within 2 months prior	Azithromycin, Penicillin
+U563	Yes	within 2 months prior	Unsure
+U564	Yes	within 10-16 months prior	Amoxicillin
+U565	Yes	within 2 months prior	Unsure
+U566	unknown	unknown	-
+U567	unknown	unknown	-
+U568	Yes	within 2 months prior, within 6-10 months prior, within 10-16 months prior	Minocycline
+U569	Yes	within 2 months prior	Azithromycin
+U570	Yes	within 10-16 months prior	Amoxicillin
+U571	unknown	unknown	-
+U572	No	unknown	-
+U573	No	unknown	-
+U574	No	unknown	-
+U575	No	unknown	-
+U576	Yes	within 2 months prior	Amoxicillin, Cefdinir
+U577	No	unknown	-
+U578	No	unknown	-
+U579	No	unknown	-
+U580	Yes	within 2 months prior, within 6-10 months prior, within 10-16 months prior	-
+U581	Yes	During the course of the study	Minocycline
+U582	Yes	During the course of the study	Macrobid
+U583	No	unknown	-
+U584	No	unknown	-
+U585	Yes	within 2 months prior, within 10-16 months prior	Unsure
+U586	No	unknown	-
+U587	Yes	within 2 months prior	Augmentin
+U588	No	unknown	-
+U589	Yes	within 10-16 months prior	Minocycline
+U600	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U602	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U603	Yes	During 7 to 9 months prior to study (December 22, 2017 – March 21, 2018)	Amoxicillin
+U605	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U606	Yes	During 4 to 6 months prior to study (March 22, 2018 – June 21, 2018)	Tinidazole
+U607	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U608	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U610	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U611	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U612	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U613	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U615	Yes	During the month prior, but excluding the week prior to study (Aug 22, 2018 – Sept 14, 2018)	Minocycline
+U616	Yes	During 2 to 3 months prior to study (June 22, 2018 – Aug 21, 2018)	Penicillin
+U617	Yes	During the month prior, but excluding the week prior to study (Aug 22, 2018 – Sept 14, 2018)	Amoxicillin
+U618	Yes	During 4 to 6 months prior to study (March 22, 2018 – June 21, 2018)	Amoxicillin
+U619	unknown	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U620	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U621	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U622	Yes	During the course of the study (Sept 22, 2018 – Oct 20, 2018)	Amoxicillin
+U623	No	During 7 to 9 months prior to study (December 22, 2017 – March 21, 2018)	-
+U624	Yes	During 4 to 6 months prior to study (March 22, 2018 – June 21, 2018)	Metronidazole
+U625	Yes	During one week prior to study (Sept 15, 2018 – Sept 21, 2018)	Amoxicillin
+U626	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U627	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U628	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U629	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U630	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U631	Yes	During the course of the study (Sept 22, 2018 – Oct 20, 2018)	Amoxicillin
+U633	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U634	Yes	During 10 to 12 months prior to study (September 21, 2017 – December 22, 2017)	Amoxicillin
+U635	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U636	Yes	During one week prior to study (Sept 15, 2018 – Sept 21, 2018)	Cephalexin
+U637	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U638	Yes	During 2 to 3 months prior to study (June 22, 2018 – Aug 21, 2018)	Amoxicillin
+U639	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U640	unknown	During 7 to 9 months prior to study (December 22, 2017 – March 21, 2018)	Amoxicillin/Unsure
+U642	unknown	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U643	Yes	During 7 to 9 months prior to study (December 22, 2017 – March 21, 2018)	Amoxicillin/Unsure
+U644	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U645	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U646	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U648	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U649	Yes	During 4 to 6 months prior to study (March 22, 2018 – June 21, 2018)	Unsure
+U650	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U651	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U652	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U653	Yes	During the course of the study (Sept 22, 2018 – Oct 20, 2018)	Amoxicillin
+U654	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U655	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U656	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U658	Yes	During 7 to 9 months prior to study (December 22, 2017 – March 21, 2018)	Amoxicillin
+U660	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U661	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U662	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U663	unknown	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U664	Yes	During the month prior, but excluding the week prior to study (Aug 22, 2018 – Sept 14, 2018)	Bactrim
+U665	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U666	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U667	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U668	Yes	During 2 to 3 months prior to study (June 22, 2018 – Aug 21, 2018)	Amoxicillin
+U669	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U670	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U671	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U672	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U673	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U674	Yes	During the course of the study (Sept 22, 2018 – Oct 20, 2018)	Unsure
+U676	Yes	During 7 to 9 months prior to study (December 22, 2017 – March 21, 2018)	Cephalexin, Sulfamethoxazole/Trimethoprim
+U677	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U678	Yes	During the month prior, but excluding the week prior to study (Aug 22, 2018 – Sept 14, 2018)	Minocycline
+U679	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U680	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U681	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U682	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U683	unknown	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U685	Yes	During the course of the study (Sept 22, 2018 – Oct 20, 2018)	Sulfamethoxazole/Trimethoprim
+U686	No	During 2 to 3 months prior to study (June 22, 2018 – Aug 21, 2018)	-
+U687	Yes	During 7 to 9 months prior to study (December 22, 2017 – March 21, 2018)	Amoxicillin
+U688	Yes	During the course of the study (Sept 22, 2018 – Oct 20, 2018)	Minocycline
+U689	No	Did not take antibiotics in the last year (September 20, 2017 or earlier)	-
+U691	unknown	unknown	-
+U700	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U701	Yes	During the month prior, but excluding the week prior to study (Dec 26, 2018 – Jan 18, 2019)	Ampicillin
+U702	Yes	During 10 to 12 months prior to study (April 26, 2018 – January 25, 2018)	Amoxicillin
+U703	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Cefdinir
+U704	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U705	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U706	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U707	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U708	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Amoxicillin
+U709	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Amoxicillin
+U710	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U711	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Amoxicillin
+U712	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U713	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Amoxicillin
+U714	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U715	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U716	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Azithromycin
+U717	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U719	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U720	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U721	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U722	Yes	During one week prior to study (Jan 19, 2019 – 25, 2019)	Benzonatate
+U723	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Isotretinoin
+U724	Yes	During the course of the study (Jan 26, 2019 – present)	Cefadroxil
+U725	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U726	Yes	During the month prior, but excluding the week prior to study (Dec 26, 2018 – Jan 18, 2019)	Unsure
+U727	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U728	unknown	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	-
+U729	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U730	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U731	Yes	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	Amoxicillin
+U732	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Amoxicillin
+U733	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U734	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U735	Yes	During one week prior to study (Jan 19, 2019 – 25, 2019)	Amoxicillin
+U736	unknown	unknown	-
+U738	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U739	Yes	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	Amoxicillin
+U740	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U741	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U743	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Azithromycin, Amoxicillin
+U744	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U745	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U746	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U747	Yes	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	Cefdinir
+U749	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U750	Yes	During 10 to 12 months prior to study (April 26, 2018 – January 25, 2018)	Amoxicillin
+U751	Yes	During one week prior to study (Jan 19, 2019 – 25, 2019)	Unsure
+U752	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U753	No	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	-
+U754	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Amoxicillin
+U755	Yes	During the course of the study (Jan 26, 2019 – present)	Azithromycin
+U756	unknown	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U757	Yes	During the month prior, but excluding the week prior to study (Dec 26, 2018 – Jan 18, 2019)	Amoxicillin
+U758	unknown	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U759	Yes	During the course of the study (Jan 26, 2019 – present)	Cephalexin
+U760	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U761	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U762	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U763	Yes	During the month prior, but excluding the week prior to study (Dec 26, 2018 – Jan 18, 2019)	Azithromycin
+U764	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U766	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U767	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U768	unknown	unknown	-
+U769	unknown	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U770	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Unsure
+U771	Yes	During the month prior, but excluding the week prior to study (Dec 26, 2018 – Jan 18, 2019)	Azithromycin
+U772	Yes	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	Amoxicillin
+U773	unknown	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U774	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Unsure
+U775	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Azithromycin
+U776	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U777	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Sulfamethoxazole/Trimethoprim, Nitrofuratoin, Ciprofloxacin
+U778	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U779	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U780	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Azithromycin
+U781	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Nitrofurantoin
+U783	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Amoxicillin
+U784	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U785	Yes	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	Amoxicillin
+U786	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Ciprofloxacin
+U787	Yes	During 10 to 12 months prior to study (April 26, 2018 – January 25, 2018)	Amoxicillin
+U788	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Amoxicillin
+U789	Yes	During 10 to 12 months prior to study (April 26, 2018 – January 25, 2018)	Amoxicillin
+U790	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Azithromycin
+U791	Yes	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	Unsure
+U792	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U793	Yes	During 2 to 3 months prior to study (November 26, 2018 – December 25, 2018)	Amoxicillin
+U794	Yes	During 7 to 9 months prior to study (April 26, 2018 – July 25, 2018)	Unsure
+U796	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U797	Yes	During 4 to 6 months prior to study (July 26, 2018 – October 25, 2018)	Unsure
+U798	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U799	No	Did not take antibiotics in the last year (January 26, 2018 or earlier)	-
+U801	No	Did not take antibiotics in the last year	NA
+U802	No	Did not take antibiotics in the last year	NA
+U803	unknown	unknown	-
+U804	No	Did not take antibiotics in the last year	NA
+U805	Yes	During 4 to 6 months prior to study	Azithromycin
+U806	Yes	During the course of the study	Doxycycline
+U807	Yes	During 2 to 3 months prior to study	Clindamycin
+U808	Yes	During 4 to 6 months prior to study	Ondansetron
+U809	No	Did not take antibiotics in the last year	NA
+U810	No	Did not take antibiotics in the last year	NA
+U811	Yes	During 10 to 12 months prior to study	Amoxicillin
+U812	No	Did not take antibiotics in the last year	NA
+U813	Yes	During 2 to 3 months prior to study	Unsure
+U814	No	Did not take antibiotics in the last year	NA
+U815	Yes	During the month prior, but excluding the week prior to study	Penicillin
+U816	No	Did not take antibiotics in the last year	NA
+U817	No	Did not take antibiotics in the last year	NA
+U818	Yes	During 2 to 3 months prior to study	Augmentin, Cephalexin, Clindamycin,
+U819	No	Did not take antibiotics in the last year	NA
+U820	No	Did not take antibiotics in the last year	NA
+U821	Yes	During 2 to 3 months prior to study	Doxycycline
+U822	No	Did not take antibiotics in the last year	NA
+U823	No	Did not take antibiotics in the last year	NA
+U824	unknown	Did not take antibiotics in the last year	NA
+U825	No	Did not take antibiotics in the last year	NA
+U826	No	Did not take antibiotics in the last year	NA
+U827	Yes	During 10 to 12 months prior to study	Amoxicillin
+U828	Yes	During 7 to 9 months prior to study	Penicillin
+U829	No	Did not take antibiotics in the last year	NA
+U830	Yes	During 10 to 12 months prior to study	Amoxicillin
+U831	unknown	Did not take antibiotics in the last year	NA
+U832	No	Did not take antibiotics in the last year	NA
+U833	No	Did not take antibiotics in the last year	NA
+U835	No	Did not take antibiotics in the last year	NA
+U835	No	Did not take antibiotics in the last year	NA
+U836	No	Did not take antibiotics in the last year	NA
+U837	No	Did not take antibiotics in the last year	NA
+U838	Yes	During the course of the study	Azithromycin
+U838	Yes	During the course of the study	Azithromycin
+U839	Yes	During the course of the study	Cephalexin
+U840	No	Did not take antibiotics in the last year	NA
+U841	No	Did not take antibiotics in the last year	NA
+U842	No	Did not take antibiotics in the last year	NA
+U844	unknown	unknown	-
+U845	No	Did not take antibiotics in the last year	NA
+U846	No	Did not take antibiotics in the last year	NA
+U847	Yes	During 4 to 6 months prior to study	Unsure
+U848	unknown	unknown	-
+U849	No	Did not take antibiotics in the last year	NA
+U850	No	During 4 to 6 months prior to study	NA
+U851	No	Did not take antibiotics in the last year	NA
+U852	No	Did not take antibiotics in the last year	NA
+U854	Yes	During the course of the study	Nitrofurantoin
+U855	No	Did not take antibiotics in the last year	NA
+U858	No	Did not take antibiotics in the last year	NA
+U859	No	Did not take antibiotics in the last year	NA
+U861	Yes	During 2 to 3 months prior to study	Unsure
+U862	No	Did not take antibiotics in the last year	NA
+U863	Yes	During the course of the study	Doxycycline
+U864	Yes	During 7 to 9 months prior to study	Amoxicillin
+U866	Yes	During 7 to 9 months prior to study	Unsure
+U867	No	Did not take antibiotics in the last year	NA
+U868	No	Did not take antibiotics in the last year	NA
+U869	Yes	During the month prior, but excluding the week prior to study	Minocycline
+U870	No	Did not take antibiotics in the last year	NA
+U871	No	Did not take antibiotics in the last year	NA
+U872	Yes	During 4 to 6 months prior to study	Doxycycline, Minocycline
+U873	No	Did not take antibiotics in the last year	NA
+U875	unknown	unknown	-
+U876	No	Did not take antibiotics in the last year	NA
+U877	Yes	During 2 to 3 months prior to study	Amoxicillin
+U879	No	Did not take antibiotics in the last year	NA
+U880	No	Did not take antibiotics in the last year	NA
+U881	No	Did not take antibiotics in the last year	NA
+U882	No	Did not take antibiotics in the last year	NA
+U883	No	Did not take antibiotics in the last year	NA
+U884	Yes	During 7 to 9 months prior to study	Amoxicillin
+U885	No	Did not take antibiotics in the last year	NA
+U886	Yes	During 4 to 6 months prior to study	Nitrofurantoin
+U887	unknown	During 7 to 9 months prior to study	NA
+U888	No	Did not take antibiotics in the last year	NA
+U889	Yes	During one week prior to study	Ciprofloxacin
+U890	No	Did not take antibiotics in the last year	NA
+U891	Yes	During 7 to 9 months prior to study	Sulfacetamide
+U892	Yes	During the course of the study	Amoxicillin
+U893	No	Did not take antibiotics in the last year	NA
+U894	unknown	Did not take antibiotics in the last year	NA
+U895	No	Did not take antibiotics in the last year	NA
+U896	No	Did not take antibiotics in the last year	NA
+U897	Yes	During the month prior, but excluding the week prior to study	Azithromycin
+U898	Yes	During the month prior, but excluding the week prior to study	Amoxicillin, Clindamyacin
+U899	Yes	During 2 to 3 months prior to study	Sarecycline

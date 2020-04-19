@@ -1,0 +1,1631 @@
+---
+title: "Project Time"
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+name: Evan Hall
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "~/Documents/BIO201/")
+```
+
+# Load Packages
+```{r}
+library(vegan)
+library(tidyverse)
+library(readxl)
+library(broom)
+library(cowplot)
+library(phyloseq)
+set.seed(7)
+source("miseqR.R")
+library(tinytex)
+```
+
+For a majority of t-tests conducted in this project, the Wilcox test was used. Many of the data sets appeared to have a trend that was non-linear and warrented the use of this procedure over the normal t-test.
+
+# Importing and Sorting
+## Sample Data Import for Weekly Information
+```{r}
+sample_wkly_df <- read_delim("~/Documents/BIO201/raw_data/sample_measurements_wkly.txt", 
+    "\t", escape_double = FALSE, trim_ws = TRUE, 
+    col_types = cols(
+  Participant_ID = col_character(),
+  Study_week = col_character(),
+  Semester = col_character(),
+  Supplement_consumed = col_character(),
+  Quantity_compliant = col_character(),
+  Frequency = col_character(),
+  pH_median = col_double(),
+  pH_mean = col_double(),
+  Bristol_median = col_double(),
+  Bristol_mean = col_double(),
+  Blood_glucose_median = col_double(),
+  Blood_glucose_mean = col_double(),
+  Acetate_median = col_double(),
+  Acetate_mean = col_double(),
+  Butyrate_median = col_double(),
+  Butyrate_mean = col_double(),
+  Propionate_median = col_double(),
+  Propionate_mean = col_double()
+)) %>%
+  rename_all(tolower) %>%
+   filter(
+         quantity_compliant != "no") %>%
+  # distinct(., participant_id, .keep_all = TRUE) %>%
+  # sample_data() %>%
+  mutate(id = paste(participant_id, study_week, sep = "_")) %>%
+   distinct(., id, .keep_all = TRUE) %>%
+  remove_rownames() %>%
+  as.data.frame()
+
+n_distinct(sample_wkly_df$participant_id)
+```
+
+## Sample Data Import for Individual
+```{r}
+sample_measurments_indv <- read_delim("~/Documents/BIO201/raw_data/sample_measurments_indv.txt", 
+     "\t", escape_double = FALSE, trim_ws = TRUE, 
+     col_types = cols(Sample_number = col_double(),
+  Final_weight = col_double(),
+  Acetate_mM = col_double(),
+  Acetate_mmol_kg = col_double(),
+  Butyrate_mM = col_double(),
+  Butyrate_mmol_kg = col_double(),
+  Propionate_mM = col_double(),
+  Propionate_mmol_kg = col_double(),
+  pH = col_double(),
+  Status = col_logical(),
+  Bristol_score = col_logical(),
+  Bristol_numeric = col_logical(),
+  Sample_number = col_character()))  %>% 
+  rename_all(tolower) %>%
+   filter(
+         quantity_compliant != "no") %>%
+  distinct(., id, .keep_all = TRUE) %>%
+  sample_data() 
+
+sample_measurments_indv <- sample_measurments_indv %>%
+  rename_all(tolower) %>%
+   filter(semester != "Winter2015",
+         quantity_compliant != "no") %>%
+  distinct(., participant_id, .keep_all = TRUE) %>%
+  sample_data() 
+```
+
+## Importing Curated Antibiotic Data
+```{r}
+antibiotic_data_df <- read_delim("~/Documents/BIO201/curated_data/antibiotic_data_prime.txt", 
+    "\t", escape_double = FALSE, trim_ws = TRUE, col_names = TRUE) %>%
+  as.data.frame() %>%
+  remove_rownames()
+```
+
+## Creating Joined Sample Weekly
+```{r}
+sample_n <- full_join(sample_wkly_df, antibiotic_data_df, by = c("participant_id")) %>%
+  as.data.frame() %>% 
+  distinct(., id, .keep_all = TRUE) %>%
+  drop_na(study_week) %>%
+  remove_rownames() %>%
+  column_to_rownames(var = "id") %>%
+  # sample_data() %>%
+  # as.matrix() %>%
+  sample_data() 
+  
+sample_n_prime <- full_join(sample_measurments_indv, antibiotic_data_df)
+
+class(sample_n)
+
+class(sample_wkly_df)
+class(antibiotic_data_df)
+```
+
+```{r}
+sample_n_mode <- sample_n %>%
+  mutate(antibiotic_name = recode(antibiotic_name, "Amoxicillin" = "cell wall", "Ampicillin" = "cell wall", "Azithromycin" = "protein synthesis", "Cephalexin" = "cell wall", "Doxycycline" = "protein synthesis", "Minocycline" = "protein synthesis", "Penicillin" = "cell wall"), 
+         id = paste(participant_id, study_week, sep = "_")) %>%
+  drop_na(study_week) %>%
+  as.data.frame() %>%
+  remove_rownames() %>%
+  column_to_rownames(var = "id") 
+```
+
+
+## Creating Shared Table
+```{r}
+shared_table_wkly <- read_delim("~/Documents/BIO201/raw_data/shared_table_wkly.txt", 
+    "\t", escape_double = FALSE, trim_ws = TRUE) 
+ 
+shared_table_wkly <- shared_table_wkly %>%
+  select(ID, starts_with("Otu")) %>%
+  column_to_rownames(var = "ID") %>% 
+  as.matrix() %>% 
+  otu_table(., taxa_are_rows = FALSE)
+```
+
+## Creating Taxa 
+```{r}
+taxa_m <- read_delim("~/Documents/BIO201/raw_data/taxonomy_table.txt",
+                            delim = "\t", escape_double = FALSE, 
+                            trim_ws = TRUE, na=c("NA")) %>%
+  column_to_rownames(var = "OTUs") %>% 
+  as.matrix() %>%
+  tax_table()  
+
+taxa_n <- read_delim("~/Documents/BIO201/raw_data/taxonomy_table.txt",
+                            delim = "\t", escape_double = FALSE, 
+                            trim_ws = TRUE, na=c("NA"))
+```
+
+## Importing Gram Bacteria Information for Each Phylum
+```{r}
+gram_stats <- read_delim("~/Documents/BIO201/curated_data/gram_stats.txt", 
+    "\t", escape_double = FALSE, trim_ws = TRUE)
+```
+```{r}
+taxa_gram <- full_join(gram_stats, taxa_n)
+
+taxa_gram_m <- taxa_gram %>%
+  drop_na() %>%
+  column_to_rownames(var = "OTUs") %>% 
+  as.matrix() %>%
+  tax_table()  
+```
+
+
+## Creating Phyloseq WKLY
+```{r}
+physq_1 <- phyloseq(shared_table_wkly, taxa_m, sample_data(sample_n))  
+physq_1
+```
+
+## Creating Phyloseq INDV
+```{r}
+physq_2 <- phyloseq(shared_table_wkly, taxa_m, sample_n_prime)
+physq_2
+```
+
+## Creating Phyloseq Gram
+```{r}
+physq_3 <- phyloseq(shared_table_wkly, taxa_gram_m, sample_data(sample_n))  
+physq_3
+```
+
+```{r}
+physq_phyla_gram <- physq_3 %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_gram)
+```
+
+
+## Creating Phyloseq Mode of Action
+```{r}                   
+physq_4 <- phyloseq(shared_table_wkly, taxa_m, sample_data(sample_n_mode))  
+physq_4
+```
+
+# Histograms of Antibiotic Data
+```{r}
+antibiotic_data_df_hist <- antibiotic_data_df %>%
+  filter(antibiotic_past_year == "Yes")
+ggplot(antibiotic_data_df_hist, aes(x=antibiotic_date)) +
+  geom_histogram(stat="count") 
+
+antibiotic_type_tab <- with(antibiotic_data_df_hist, table(antibiotic_name))
+print(antibiotic_type_tab)
+# Amoxicillin, Azithromycin, Penicillin, Cephalexin, Minocycline
+
+antibiotic_amoxicillin <- antibiotic_data_df_hist %>%
+  filter(antibiotic_name == "Amoxicillin")
+ggplot(antibiotic_amoxicillin, aes(x=antibiotic_date)) +
+  geom_histogram(stat="count") 
+
+antibiotic_azithromycin <- antibiotic_data_df_hist %>%
+  filter(antibiotic_name == "Azithromycin")
+ggplot(antibiotic_azithromycin, aes(x=antibiotic_date)) +
+  geom_histogram(stat="count") 
+
+antibiotic_penicillin <- antibiotic_data_df_hist %>%
+  filter(antibiotic_name == "Penicillin")
+ggplot(antibiotic_penicillin, aes(x=antibiotic_date)) +
+  geom_histogram(stat="count") 
+
+antibiotic_cephalexin <- antibiotic_data_df_hist %>%
+  filter(antibiotic_name == "Cephalexin")
+ggplot(antibiotic_cephalexin, aes(x=antibiotic_date)) +
+  geom_histogram(stat="count") 
+
+antibiotic_minocycline <- antibiotic_data_df_hist %>%
+  filter(antibiotic_name == "Minocycline")
+ggplot(antibiotic_minocycline, aes(x=antibiotic_date)) +
+  geom_histogram(stat="count") 
+```
+
+# Richness Procedure
+```{r}
+samp_data_project <- sample_n_prime %>%
+  # drop extra columns
+  select(participant_id, study_week, 
+         semester, supplement_consumed, quantity_compliant,
+         antibiotic_past_year, antibiotic_date, antibiotic_name) %>%
+  # filter for samples of interest
+  filter(quantity_compliant != "no",
+         study_week == "week1",
+         antibiotic_past_year != "unknown" | antibiotic_past_year != "-") %>%
+  # filter for first occurance of each participant ID
+  arrange(participant_id) %>%
+  group_by(participant_id) %>%
+  slice(1) %>%
+  ungroup()
+```
+
+## Edit Phyloseq
+```{r}
+richness_df_project <- physq_2 %>%
+  estimate_richness(., split = TRUE,  measures = c("Observed")) %>%
+  rownames_to_column(var = "participant_id")
+```
+
+```{r} 
+df1 <- richness_df_project %>%
+  separate(col = participant_id, #column you want to modify
+           into = c("participant_id", "study_week"), #resulting columns
+           sep = "_", #separate at first space
+           remove = TRUE, #drop column after modification
+           extra = "drop") %>%
+  filter(study_week == "week1") #drop extra (if there are multiple space) 
+
+df1
+
+df1_r_p <- df1 %>%
+  inner_join(samp_data_project, by = "participant_id") %>% #this row is changed
+  rename(richness = Observed) %>%
+  group_by(participant_id, semester, antibiotic_date, antibiotic_past_year, antibiotic_name) %>%
+  summarise(avg_richness = round(mean(richness), digits = 0))
+```
+
+```{r}
+physq_obj_2 <- phyloseq(shared_table_wkly, taxa_m, sample_data(sample_n)) %>% 
+  # subset for consent and compliance
+  subset_samples(., quantity_compliant != "no") %>%
+  # subset for weeks of interest
+  subset_samples(., study_week == "week1") %>%
+  subset_samples(., antibiotic_past_year != "unknown" | antibiotic_past_year != "-")
+```
+
+```{r}
+physq_phyla_2 <- physq_obj_2 %>% 
+  # tax glom groups together taxa with the same name
+  tax_glom("Phylum") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Phylum) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, study_week, semester, 
+           frequency, supplement_consumed, Phylum, OTU, antibiotic_past_year, antibiotic_name) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) %>%
+  # remove low abundance taxa
+  filter(relative_abundance > 0.001)
+physq_phyla_2
+```
+## Antibiotic Graph Y
+```{r}
+group1_plot <- physq_phyla_2 %>%
+  # filter for supplement and study week 
+  filter(antibiotic_past_year == "Yes") %>% 
+  # set parameters for plot
+             ggplot(aes(x = participant_id, y = relative_abundance, fill = Phylum )) + 
+  geom_bar(stat = "identity") +
+  scale_fill_manual(name = "Phylum",
+                  #these are all the phylum categories
+                  breaks = c("Actinobacteria", "Bacteria_unclassified", 
+                             "Bacteroidetes", 
+                             "Firmicutes", "Fusobacteria", 
+                             "Lentisphaerae", "Proteobacteria", 
+                             
+                             "Verrucomicrobia"), 
+                  #these are updated names for the phyla
+                  labels = c("Actinobacteria", "Unclassified", 
+                             "Bacteroidetes",
+                             "Firmicutes", "Fusobacteria", 
+                             "Lentisphaerae", "Proteobacteria", 
+                           
+                             "Verrucomicrobia"), 
+                  #colors for each category
+                  values = c("#4bb092", "#618bcb",
+                             "#b95d6a",
+                             "#c783c1", "#bd7a43",
+                             "#c9aa3c", "#d4447a",
+                            
+                             "#d35238")) + 
+  # layer for stacked bar plot 
+  # clean up x-axis 
+  theme(axis.title.x = element_blank(), #remove x-axis label 
+        axis.text.x =  element_text(angle = 90, #rotate tick labels 
+                                    vjust = 0.5,
+                                    hjust = 0.5,
+                                    size = 8)) +
+  # clean up y-axis
+  ylab("Relative Abundance\n(% total sequences)") +
+  ggtitle("Antibiotic Past Year: YES")
+group1_plot
+```
+## Antibiotic Graph N
+```{r}
+group2_plot <- physq_phyla_2 %>%
+  # filter for supplement and study week 
+  filter(antibiotic_past_year == "No") %>% 
+  # set parameters for plot
+  ggplot(aes(x = participant_id, y = relative_abundance, fill = Phylum )) + 
+  geom_bar(stat = "identity") +
+  scale_fill_manual(name = "Phylum",
+                  #these are all the phylum categories
+                  breaks = c("Actinobacteria", "Bacteria_unclassified", 
+                             "Bacteroidetes", "Elusimicrobia", 
+                             "Firmicutes", "Fusobacteria", 
+                             "Lentisphaerae", "Proteobacteria", 
+                             "Sprichaetes", "Synergistetes", 
+                             "Verrucomicrobia"), 
+                  #these are updated names for the phyla
+                  labels = c("Actinobacteria", "Unclassified", 
+                             "Bacteroidetes", "Elusimicrobia", 
+                             "Firmicutes", "Fusobacteria", 
+                             "Lentisphaerae", "Proteobacteria", 
+                             "Sprichaetes", "Synergistetes", 
+                             "Verrucomicrobia"), 
+                  #colors for each category
+                  values = c("#4bb092", "#618bcb",
+                             "#b95d6a", "#79853d",
+                             "#c783c1", "#bd7a43",
+                             "#c9aa3c", "#d4447a",
+                             "#7663cb", "#67b34a",
+                             "#d35238")) +
+  # clean up x-axis 
+  theme(axis.title.x = element_blank(), #remove x-axis label 
+        axis.text.x =  element_text(angle = 90, #rotate tick labels 
+                                    vjust = 0.5,
+                                    hjust = 0.5,
+                                    size = 8)) +
+  # clean up y-axis
+  ylab("Relative Abundance\n(% total sequences)") +
+  ggtitle("Antibiotic Past Year: NO")
+group2_plot
+```
+## Richness Comparison Y/N
+```{r}
+rich1_project <- physq_obj_2 %>%
+  subset_samples(antibiotic_past_year != "unknown") %>%
+  plot_richness(., "antibiotic_past_year", measures = c("Observed")) +
+  ylab("Richness (Observed ESVs)") + xlab(NULL)
+rich1_project
+```
+
+```{r}
+rich1_project$layers <- rich1_project$layers[-1] #drop geom_point 
+
+rich2_project <- rich1_project +   
+  geom_violin(aes(color = antibiotic_past_year)) + #add violin in color
+  geom_jitter(aes(color = antibiotic_past_year)) +  #add individual points in color 
+  theme(legend.position = "none")
+rich2_project
+```
+## Assumption Checks
+```{r}
+# Subset Samples
+rich_test_A <- df1_r_p %>%
+  filter(antibiotic_past_year == "Yes")
+rich_test_B <- df1_r_p %>%
+  filter(antibiotic_past_year == "No")
+
+shapiro.test(rich_test_A$avg_richness)  
+shapiro.test(rich_test_B$avg_richness)
+
+df1_r_p %>%
+  group_by(antibiotic_name) %>%
+  summarise(counts = n())
+
+ggplot(rich_test_A, aes(x=avg_richness)) +
+  geom_histogram() 
+qqnorm(rich_test_A$avg_richness); qqline(rich_test_A$avg_richness)
+
+ggplot(rich_test_B, aes(x=avg_richness)) +
+  geom_histogram() 
+qqnorm(rich_test_B$avg_richness); qqline(rich_test_B$avg_richness)
+```
+
+Data appears to follow linear trend. 
+### Richness Test
+```{r}
+# format data for test
+rich_df_wide_1 <- df1_r_p %>%
+  spread(key = "antibiotic_past_year", value = "avg_richness") 
+
+# conduct test 
+wilcox.test(rich_df_wide_1$Yes, rich_df_wide_1$No, 
+            alternative = "two.sided", paired = FALSE) # p-value = .02531
+# Rank based classification --> you can get ties, p-value is approx. 
+```
+
+The richness between those who used antibiotics within the past year ("Yes") compared to those who did not ("No") did not appear to be different from chance variation due to the larger p-value = .3399. We believe that richness between the two defined groups above are not different. 
+
+# Ordination Tests Y/N between Antibiotic Names
+```{r}
+# create a subset of the phyloseq object
+physq_sub_project <- physq_obj_2 %>% 
+  subset_samples(., antibiotic_past_year == "Yes") %>%
+  prune_taxa(taxa_sums(.) > 1000, .) %>%
+  prune_samples(sample_sums(.) > 1000, .)
+
+# get read counts 
+sample_sum_df_prime <- data.frame(sum = sample_sums(physq_sub_project))
+
+# Histogram of sample read counts
+ggplot(sample_sum_df_prime, aes(x = sum)) + 
+  geom_histogram(color = "black", fill = "gray", binwidth = 2500) +
+  ggtitle("Distribution of sample sequencing depth") + 
+  xlab("Read counts") +
+  theme(axis.title.y = element_blank())
+
+# Summary statistics on read counts 
+min(sample_sums(physq_sub_project)) #1174
+mean(sample_sums(physq_sub_project)) #22810
+max(sample_sums(physq_sub_project))  #49192
+
+# scale samples to even depth using custom function
+physq_scale_proj <- physq_sub_project %>%
+  scale_reads(round = "round") 
+```
+
+## Bray
+```{r}
+physq_bc_project <- ordinate(physq_scale_proj, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "bray")
+physq_bc_project
+```
+### Bray Plot
+```{r}
+ordplot1_project <- plot_ordination(physeq = physq_sub_project, 
+                     ordination = physq_bc_project, 
+                     type = "samples", 
+                     color = "antibiotic_name", 
+                     shape = "semester")
+print(ordplot1_project)
+```
+### Bray Test
+```{r}
+dat_bray_1 <- phyloseq::distance(physq_sub_project, method = "bray") 
+
+sampledf_1 <- physq_sub_project %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_res_1 <- adonis(formula = dat_bray_1 ~ antibiotic_name, 
+                  data = sampledf_1)
+
+# view results 
+print(adn_res_1)
+```
+
+The Bray-Curtis index test between all the antibiotics given for those who answered "Yes" for having taken an antibitoic in the past year. The community strcutre between theese antibiotics did not appear to be different from that of chance variation. (p-value = .133 & R-sqaured = .34487)
+
+
+## Jaccard
+```{r}
+physq_j_1 <- ordinate(physq_scale_proj, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "jaccard")
+physq_j_1
+```
+### Jaccard Plot
+```{r}
+ordplot2_1 <- plot_ordination(physeq = physq_sub_project, 
+                     ordination = physq_j_1, 
+                     type = "samples", 
+                     color = "antibiotic_name", 
+                     shape = "semester")
+print(ordplot2_1)
+```
+### Jaccard Test
+```{r}
+# calculate BC index, get distance matrix
+dat_j_proj <- phyloseq::distance(physq_sub_project, method = "jaccard") 
+
+sampledf_2 <- physq_sub_project %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_j_project <- adonis(formula = dat_j_proj ~ antibiotic_name, 
+                  data = sampledf_2)
+
+# view results 
+print(adn_j_project)
+```
+
+From the Jaccard test that looks at the index of overlap between the communities, between each antibiotic named by those who responded "Yes" to have taken antibiotics in the past year there did not appear to be a large deviance from chance vairation. The community composition across antibiotic names appear to be the same. 
+
+
+# Ordination Tests Comparing Y/N Antibiotic Responses
+```{r}
+# create a subset of the phyloseq object
+physq_sub_project_2 <- physq_obj_2 %>% 
+  subset_samples(., antibiotic_past_year != "-") %>%
+  prune_taxa(taxa_sums(.) > 1000, .) %>%
+  prune_samples(sample_sums(.) > 1000, .)
+
+# get read counts 
+sample_sum_df_prime_1 <- data.frame(sum = sample_sums(physq_sub_project_2))
+
+# Histogram of sample read counts
+ggplot(sample_sum_df_prime_1, aes(x = sum)) + 
+  geom_histogram(color = "black", fill = "gray", binwidth = 2500) +
+  ggtitle("Distribution of sample sequencing depth") + 
+  xlab("Read counts") +
+  theme(axis.title.y = element_blank())
+
+# Summary statistics on read counts 
+min(sample_sums(physq_sub_project_2)) #1174
+mean(sample_sums(physq_sub_project_2)) #22810
+max(sample_sums(physq_sub_project_2))  #49192
+
+# scale samples to even depth using custom function
+physq_scale_proj_2 <- physq_sub_project_2 %>%
+  scale_reads(round = "round") 
+```
+## Bray
+```{r}
+physq_bc_project_2 <- ordinate(physq_scale_proj_2, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "bray")
+physq_bc_project_2
+```
+### Bray Plot
+```{r}
+ordplot1_project_2 <- plot_ordination(physeq = physq_sub_project_2, 
+                     ordination = physq_bc_project_2, 
+                     type = "samples", 
+                     color = "antibiotic_past_year", 
+                     shape = "semester")
+print(ordplot1_project_2)
+```
+### Bray Test
+```{r}
+# calculate BC index, get distance matrix
+dat_b_proj_2 <- phyloseq::distance(physq_sub_project_2, method = "bray") 
+
+sampledf_2_prime <- physq_sub_project_2 %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_b_project_2 <- adonis(formula = dat_b_proj_2 ~ antibiotic_past_year, 
+                  data = sampledf_2_prime)
+
+# view results 
+print(adn_b_project_2)
+```
+
+
+The Bray-Curtis index test was between those who identified as taking an antibiotic within the past year "Yes" and those who did not "No". The community strcutre between theese antibiotics did appear to be different from that of chance variation, but the R-squared value was quite low. (p-value = .002 & R-squared = .02054) 
+
+## Jaccard 
+```{r}
+physq_j_1_prime <- ordinate(physq_scale_proj_2, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "jaccard")
+physq_j_1_prime
+```
+### Jaccard Plot
+```{r}
+ordplot2_1_non <- plot_ordination(physeq = physq_sub_project_2, 
+                     ordination = physq_j_1_prime, 
+                     type = "samples", 
+                     color = "antibiotic_past_year", 
+                     shape = "semester")
+print(ordplot2_1_non)
+```
+### Jaccard Test
+```{r}
+# calculate BC index, get distance matrix
+dat_j_proj_2 <- phyloseq::distance(physq_sub_project_2, method = "jaccard") 
+
+sampledf_2_2 <- physq_sub_project_2 %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_j_project_22 <- adonis(formula = dat_j_proj_2 ~ antibiotic_past_year, 
+                  data = sampledf_2_2)
+
+# view results 
+print(adn_j_project_22)
+```
+
+The Jaccard test that looks at the index of overlap between the communities. Between the students who responsed "Yes" and "No" to having taken antibiotics within the past year, there did appear to be a large deviance from chance vairation. p-value = .004 & R-squared = .01707. The community composition across antibiotic names appear to be the different, but a small R-squared value would caution significance from the data. 
+
+# Genus abundance t-test: Bifidobacterium
+```{r}
+physq_phyla_bifido <- physq_obj_2 %>%
+  # tax glom groups together taxa with the same name, SKIP THIS
+  subset_taxa(Genus == "Bifidobacterium") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_bifido)
+```
+
+## Assumptions
+```{r}
+# Normality
+bifido_df_y <- physq_phyla_bifido %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(relative_abundance > 0)
+shapiro.test(bifido_df_y$relative_abundance)
+
+bifido_df_n <- physq_phyla_bifido %>% 
+  filter(antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0)
+shapiro.test(bifido_df_n$relative_abundance)
+
+# Variance
+var.test(x = bifido_df_y$relative_abundance, 
+         y = bifido_df_n$relative_abundance, 
+         alternative = "two.sided")
+
+# Histogram
+ggplot(bifido_df_y, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(bifido_df_y$relative_abundance); qqline(bifido_df_y$relative_abundance)
+
+ggplot(bifido_df_n, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(bifido_df_n$relative_abundance); qqline(bifido_df_n$relative_abundance)
+
+```
+
+## Figure
+```{r}
+bifido_plot <- physq_phyla_bifido %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Bifidobacterium Y/N")
+bifido_plot
+```
+
+### Non-paramteric Test
+```{r}
+wilcox.test(x = bifido_df_y$relative_abundance, 
+            y = bifido_df_n$relative_abundance, 
+            paired = FALSE,
+            alternative = "greater")
+```
+
+Based on the data collected, a large deviance from chance variation with a p-value of .01646 would assume to reject the null hypothesis. The relative abundance of Bifidobacterium in those who responded "Yes" versus "No" has a true location shift greater than 0. 
+
+# Genus abundance t-test: Clostridium
+```{r}
+physq_phyla_clos <- physq_obj_2 %>%
+  # tax glom groups together taxa with the same name, SKIP THIS
+  subset_taxa(Genus == "Clostridium_III" | Genus == "Clostridium_IV" | Genus == "Clostridium_sensu_stricto" |
+              Genus == "Clostridium_XI" | Genus == "Clostridium_XlVa" | Genus == "Clostridium_XlVb" | Genus == "Clostridium_XVIII") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_clos)
+```
+
+## Assumptions
+```{r}
+clos_df_y <- physq_phyla_clos %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(relative_abundance > 0)
+shapiro.test(clos_df_y$relative_abundance)
+
+clos_df_n <- physq_phyla_clos %>% 
+  filter(antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0)
+shapiro.test(clos_df_n$relative_abundance)
+
+# Variance
+var.test(x = clos_df_y$relative_abundance, 
+         y = clos_df_n$relative_abundance, 
+         alternative = "two.sided")
+
+# Histogram
+ggplot(clos_df_y, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(clos_df_y$relative_abundance); qqline(clos_df_y$relative_abundance)
+
+ggplot(clos_df_n, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(clos_df_n$relative_abundance); qqline(clos_df_n$relative_abundance)
+```
+
+## Figure
+```{r}
+clos_plot <- physq_phyla_clos %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Clostridium Y/N")
+clos_plot
+```
+
+### Non-paramteric Test
+```{r}
+wilcox.test(x = clos_df_y$relative_abundance, 
+            y = clos_df_n$relative_abundance, 
+            paired = FALSE,
+            alternative = "two.sided")
+```
+
+Based on the data collected, there was not a large deviance from chance variation with a p-value of .177, assuming to fail to reject the null hypothesis. The relative abundance of Clostridium in those who responded "Yes" versus "No" has a true location shift equal to 0. 
+
+# Genus abundance t-test: Enterococcus
+```{r}
+physq_phyla_enter <- physq_obj_2 %>%
+  # tax glom groups together taxa with the same name, SKIP THIS
+  subset_taxa(Genus == "Enterococcus" | Genus == "Enterobacteriaceae_unclassified") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_enter)
+```
+
+## Assumptions
+```{r}
+enter_df_y <- physq_phyla_enter %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(relative_abundance > 0)
+shapiro.test(enter_df_y$relative_abundance)
+
+enter_df_n <- physq_phyla_enter %>% 
+  filter(antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0)
+shapiro.test(enter_df_n$relative_abundance)
+
+# Variance
+var.test(x = enter_df_y$relative_abundance, 
+         y = enter_df_n$relative_abundance, 
+         alternative = "two.sided")
+
+# Histogram
+ggplot(enter_df_y, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(enter_df_y$relative_abundance); qqline(enter_df_y$relative_abundance)
+
+ggplot(enter_df_n, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(enter_df_n$relative_abundance); qqline(enter_df_n$relative_abundance)
+```
+## Figure
+```{r}
+enter_plot <- physq_phyla_enter %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Enterococcus Y/N")
+enter_plot
+```
+
+### Non-paramteric Test
+```{r}
+wilcox.test(x = enter_df_y$relative_abundance, 
+            y = enter_df_n$relative_abundance, 
+            paired = FALSE,
+            alternative = "two.sided")
+```
+
+Based on the data collected, there was not a large deviance from chance variation with a p-value of .7893, assuming to fail to reject the null hypothesis. The relative abundance of Enterococcus in those who responded "Yes" versus "No" has a true location shift equal to 0.
+
+# Genus abundance t-test: Lactobacillus
+```{r}
+physq_phyla_lac <- physq_obj_2 %>%
+  # tax glom groups together taxa with the same name, SKIP THIS
+  subset_taxa(Genus == "Lactobacillus" | Genus == "Lactobacillales_unclassified" | Genus == "Lactobacillaceae_unclassified") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_lac)
+```
+
+## Assumptions
+```{r}
+lac_df_y <- physq_phyla_lac %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(relative_abundance > 0)
+shapiro.test(lac_df_y$relative_abundance)
+
+lac_df_n <- physq_phyla_lac %>% 
+  filter(antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0)
+shapiro.test(lac_df_n$relative_abundance)
+
+# Variance
+var.test(x = lac_df_y$relative_abundance, 
+         y = lac_df_n$relative_abundance, 
+         alternative = "two.sided")
+
+# Histogram
+ggplot(lac_df_y, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(lac_df_y$relative_abundance); qqline(lac_df_y$relative_abundance)
+
+ggplot(lac_df_n, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(lac_df_n$relative_abundance); qqline(lac_df_n$relative_abundance)
+```
+### Test
+```{r}
+wilcox.test(x = lac_df_y$relative_abundance, 
+            y = lac_df_n$relative_abundance, 
+            paired = FALSE,
+            alternative = "less")
+```
+
+Based on the data collected, a large deviance from chance variation with a p-value of .03437 would assume to reject the null hypothesis. The relative abundance of Lactobacillus in those who responded "Yes" versus "No" has a true location shift less than 0. 
+
+## Figure
+```{r}
+lac_plot <- physq_phyla_lac %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none")
+lac_plot
+```
+
+
+# Gram Neg/Pos Plot Between Y/N Responses
+```{r}
+gram_plot <- physq_phyla_gram %>%
+  filter(., antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  facet_grid(~gram_status) +
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none")
+gram_plot
+```
+
+# Gram Negative Bacteria Comparison To Antibiotic Y/N Response
+```{r}
+gram_df_y_neg <- physq_phyla_gram %>% 
+  filter(antibiotic_past_year == "Yes") %>% 
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin") %>%
+  filter(gram_status == "negative") %>%
+  filter(relative_abundance > 0)
+# shapiro.test(gram_df_y_neg$relative_abundance)
+
+gram_df_n_neg <- physq_phyla_gram %>% 
+  filter(antibiotic_past_year == "No") %>%
+  filter(gram_status == "negative") %>%
+  filter(relative_abundance > 0)
+# shapiro.test(gram_df_n_neg$relative_abundance)
+
+# Variance
+var.test(x = gram_df_y_neg$relative_abundance, 
+         y = gram_df_n_neg$relative_abundance, 
+         alternative = "two.sided")
+
+# Histogram
+ggplot(gram_df_y_neg, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(gram_df_y_neg$relative_abundance); qqline(gram_df_y_neg$relative_abundance)
+
+ggplot(gram_df_n_neg, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(gram_df_n_neg$relative_abundance); qqline(gram_df_n_neg$relative_abundance)
+```
+
+```{r}
+wilcox.test(x = gram_df_n_neg$relative_abundance, 
+            y = gram_df_y_neg$relative_abundance, 
+            paired = FALSE,
+            alternative = "less")
+```
+
+Based on the large deviation from chance vairation with a p-value less than 2.2e-16, we will reject the null hypothesis. The relative abundance of gram negative bacteria between those who responded "No" and "Yes" had a true location shift less than 0. 
+
+```{r}
+gram_plot_2 <- physq_phyla_gram %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>% 
+  filter(gram_status == "negative") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Gram Negative Bacterial Abundance Y/N")
+gram_plot_2
+```
+
+# Ordination Plot for Mode of Function: Cell Wall
+```{r}
+physq_obj_prime_dus <- phyloseq(shared_table_wkly, taxa_m, sample_data(sample_n_mode)) %>% 
+  # subset for consent and compliance
+  subset_samples(., quantity_compliant != "no") %>%
+  # subset for weeks of interest
+  subset_samples(., study_week == "week1") 
+
+# create a subset of the phyloseq object
+physq_sub_project_yn_mode <- physq_obj_prime_dus %>% 
+  subset_samples(., antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  subset_samples(., antibiotic_name == "cell wall" | antibiotic_name == "-") %>%
+  prune_taxa(taxa_sums(.) > 1000, .) %>%
+  prune_samples(sample_sums(.) > 1000, .)
+
+# get read counts 
+sample_sum_df_prime_mode <- data.frame(sum = sample_sums(physq_sub_project_yn_mode))
+
+# Histogram of sample read counts
+ggplot(sample_sum_df_prime_mode, aes(x = sum)) + 
+  geom_histogram(color = "black", fill = "gray", binwidth = 2500) +
+  ggtitle("Distribution of sample sequencing depth") + 
+  xlab("Read counts") +
+  theme(axis.title.y = element_blank())
+
+# scale samples to even depth using custom function
+physq_scale_proj_mode <- physq_sub_project_yn_mode %>%
+  scale_reads(round = "round") 
+```
+## Bray
+```{r}
+physq_bc_project_mode <- ordinate(physq_scale_proj_mode, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "bray")
+physq_bc_project_mode
+```
+```{r}
+ordplot1_project_mode <- plot_ordination(physeq = physq_sub_project_yn_mode, 
+                     ordination = physq_bc_project_mode, 
+                     type = "samples", 
+                     color = "antibiotic_name", 
+                     shape = "semester") +
+  ggtitle("Cell Wall vs None Bray")
+print(ordplot1_project_mode)
+```
+
+```{r}
+# calculate BC index, get distance matrix
+dat_b_proj_mode <- phyloseq::distance(physq_sub_project_yn_mode, method = "bray") 
+
+sampledf_prime_mode <- physq_sub_project_yn_mode %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_b_project_mode <- adonis(formula = dat_b_proj_mode ~ antibiotic_name, 
+                  data = sampledf_prime_mode)
+
+# view results 
+print(adn_b_project_mode)
+```
+
+The Bray-Curtis index test between those who responded "Yes" and took antibiotics that targeted the cell wall versus those who responded "No", did not appear different p-value = .52 & R-squared = .01091. The community strcutre between groups did not appear to be different from that of chance variation. 
+
+## Jaccard
+```{r}
+physq_j_prime_mode <- ordinate(physq_scale_proj_mode, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "jaccard")
+physq_j_prime_mode
+```
+
+
+```{r}
+ordplot1_project_mode_2 <- plot_ordination(physeq = physq_sub_project_yn_mode, 
+                     ordination = physq_j_prime_mode, 
+                     type = "samples", 
+                     color = "antibiotic_name", 
+                     shape = "semester") +
+  ggtitle("Cell Wall vs None Jaccard")
+print(ordplot1_project_mode_2)
+```
+
+
+```{r}
+# calculate BC index, get distance matrix
+dat_j_proj_mode <- phyloseq::distance(physq_sub_project_yn_mode, method = "jaccard") 
+
+sampledf_prime_mode_2 <- physq_sub_project_yn_mode %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_j_project_mode <- adonis(formula = dat_j_proj_mode ~ antibiotic_name, 
+                  data = sampledf_prime_mode_2)
+
+# view results 
+print(adn_j_project_mode)
+```
+The Jaccard test that looks at the index of overlap between the communities. Between the students who responsed "Yes" and took antibiotics that targeted the cell wall and "No" to having taken antibiotics within the past year, there did not appear to be a large deviance from chance vairation, p-value = .599 & R-squared = .0111. The community composition across antibiotic names do not appear to be the different.
+
+
+# Ordination Plot for Mode of Function: Protein Synthesis
+```{r}
+# create a subset of the phyloseq object
+physq_sub_project_yn_mode_2 <- physq_obj_prime_dus %>% 
+  subset_samples(., antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  subset_samples(., antibiotic_name == "protein synthesis" | antibiotic_name == "-") %>%
+  prune_taxa(taxa_sums(.) > 1000, .) %>%
+  prune_samples(sample_sums(.) > 1000, .)
+
+# get read counts 
+sample_sum_df_prime_mode_2 <- data.frame(sum = sample_sums(physq_sub_project_yn_mode_2))
+
+# Histogram of sample read counts
+ggplot(sample_sum_df_prime_mode_2, aes(x = sum)) + 
+  geom_histogram(color = "black", fill = "gray", binwidth = 2500) +
+  ggtitle("Distribution of sample sequencing depth") + 
+  xlab("Read counts") +
+  theme(axis.title.y = element_blank())
+
+# scale samples to even depth using custom function
+physq_scale_proj_mode_2 <- physq_sub_project_yn_mode_2 %>%
+  scale_reads(round = "round") 
+```
+
+## Bray
+```{r}
+physq_bc_project_mode_2 <- ordinate(physq_scale_proj_mode_2, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "bray")
+physq_bc_project_mode_2
+```
+
+
+```{r}
+ordplot1_project_mode_2 <- plot_ordination(physeq = physq_sub_project_yn_mode_2, 
+                     ordination = physq_bc_project_mode_2, 
+                     type = "samples", 
+                     color = "antibiotic_name", 
+                     shape = "semester") +
+  ggtitle("Protein Synthesis vs None Bray")
+print(ordplot1_project_mode_2)
+```
+
+
+```{r}
+# calculate BC index, get distance matrix
+dat_b_proj_mode_2 <- phyloseq::distance(physq_sub_project_yn_mode_2, method = "bray") 
+
+sampledf_prime_mode_2 <- physq_sub_project_yn_mode_2 %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_b_project_mode_2 <- adonis(formula = dat_b_proj_mode_2 ~ antibiotic_name, 
+                  data = sampledf_prime_mode_2)
+
+# view results 
+print(adn_b_project_mode_2)
+```
+
+The Bray-Curtis index test between those who responded "Yes" and took antibiotics that targeted protein synthesis versus those who responded "No", did appear different p-value = .047 & R-squared = .02553. The community strcutre between groups did appear to be different from that of chance variation, but a small R-squared value is relevant for discussion. 
+
+```{r}
+physq_j_prime_mode_2 <- ordinate(physq_scale_proj_mode_2, 
+           method = "NMDS", 
+           k=3, maxit=500, try=50,
+           distance = "jaccard")
+physq_j_prime_mode_2
+```
+
+
+```{r}
+ordplot1_project_mode_3 <- plot_ordination(physeq = physq_sub_project_yn_mode_2, 
+                     ordination = physq_j_prime_mode_2, 
+                     type = "samples", 
+                     color = "antibiotic_name", 
+                     shape = "semester") + 
+  ggtitle("Protein Synthesis vs None Jaccard")
+print(ordplot1_project_mode_3)
+```
+
+
+```{r}
+# calculate BC index, get distance matrix
+dat_j_proj_mode_2 <- phyloseq::distance(physq_sub_project_yn_mode_2, method = "jaccard") 
+
+sampledf_prime_mode_3 <- physq_sub_project_yn_mode_2 %>% 
+  sample_data(.) %>% #extract sample data from phyloseq object 
+  as(., "data.frame") #convert to data frame for adonis()
+
+# run test
+adn_j_project_mode_2 <- adonis(formula = dat_j_proj_mode_2 ~ antibiotic_name, 
+                  data = sampledf_prime_mode_3)
+
+# view results 
+print(adn_j_project_mode_2)
+```
+
+The Jaccard test that looks at the index of overlap between the communities. Between the students who responsed "Yes" and took antibiotics that targeted protein synthesis and "No" to having taken antibiotics within the past year, there did appear to be a large deviance from chance vairation, p-value = .029 & R-squared = .02146. The community composition across antibiotic names do appear to be the different, but a small R-square value warrents discusion. 
+
+# T-tests for Phylums
+## Subset of Phylum: Bacteroidetes
+```{r}
+physq_phyla_phy_1 <- physq_3 %>%
+  subset_taxa(Phylum == "Bacteroidetes") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_1)
+```
+
+```{r}
+phyla_plot_bac <- physq_phyla_phy_1 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") + 
+  ggtitle("Bacteroidetes Y/N")
+phyla_plot_bac
+```
+
+```{r}
+# Subset data
+phyla_bac_y <- physq_phyla_phy_1 %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin") %>% filter(relative_abundance > 0)
+  
+phyla_bac_n <- physq_phyla_phy_1 %>% 
+  filter(antibiotic_past_year == "No") %>%
+  filter(relative_abundance > 0)
+
+
+# Histogram
+ggplot(phyla_bac_y, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(phyla_bac_y$relative_abundance); qqline(phyla_bac_y$relative_abundance)
+
+ggplot(phyla_bac_n, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(phyla_bac_n$relative_abundance); qqline(phyla_bac_n$relative_abundance)
+```
+
+```{r}
+wilcox.test(x = phyla_bac_y$relative_abundance, 
+            y = phyla_bac_n$relative_abundance, 
+            paired = FALSE,
+            alternative = "two.sided")
+```
+
+The p-value of 0.9916 would lead us to fail to reject the null hypothesis. The relative abundance between those who responded "Yes" or "No" to having taken antibiotic within the past year to the phylum Bacteroidetes has a true location shift equal to 0.
+
+## Subset for Phylum: Elusimicrobia
+```{r}
+physq_phyla_phy_2 <- physq_3 %>%
+  subset_taxa(Phylum == "Elusimicrobia") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_2)
+```
+
+```{r}
+phyla_plot_elus <- physq_phyla_phy_2 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none")
+phyla_plot_elus
+```
+
+```{r}
+# Subset data
+phyla_elus_y <- physq_phyla_phy_2 %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin")
+  
+phyla_elus_n <- physq_phyla_phy_2 %>% 
+  filter(antibiotic_past_year == "No")
+
+
+# Histogram
+#ggplot(phyla_elus_y, aes(x=relative_abundance)) +
+ # geom_histogram() #histograms show the number of data points (count) at each value
+#qqnorm(phyla_elus_y$relative_abundance); qqline(phyla_elus_y$relative_abundance)
+
+#ggplot(phyla_elus_n, aes(x=relative_abundance)) +
+ # geom_histogram() #histograms show the number of data points (count) at each value
+#qqnorm(phyla_elus_n$relative_abundance); qqline(phyla_elus_n$relative_abundance)
+```
+
+```{r}
+# wilcox.test(x = phyla_elus_y$relative_abundance, 
+  #          y = phyla_elus_n$relative_abundance, 
+   #         paired = FALSE,
+    #        alternative = "two.sided")
+```
+
+There were not enough unique data points to conduct a test or make plot for this phylum. 
+
+## Subset for Phylum: Fusobacteria
+```{r}
+physq_phyla_phy_3 <- physq_3 %>%
+  subset_taxa(Phylum == "Fusobacteria") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_3)
+```
+
+```{r}
+phyla_plot_fuso <- physq_phyla_phy_3 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Fusobacteria Y/N")
+phyla_plot_fuso
+```
+
+Only those who responded "No" appeared to have the majority abundance of Fusobacteria, and there was not enough relevant data from both variables to conduct a statistical test. 
+
+## Subset for Phylum: Lentisphaerae
+```{r}
+physq_phyla_phy_4 <- physq_3 %>%
+  subset_taxa(Phylum == "Lentisphaerae") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_4)
+```
+
+```{r}
+phyla_plot_lent <- physq_phyla_phy_3 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Lentisphaerae Y/N")
+phyla_plot_lent
+```
+
+Only those who responded "No" appeared to have the majority abundance of Lentisphaerae, and there was not enough relevant data from both variables to conduct a statistical test. 
+
+## Subset for Phylum: Proteobacteria
+```{r}
+physq_phyla_phy_5 <- physq_3 %>%
+  subset_taxa(Phylum == "Proteobacteria") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_5)
+```
+
+```{r}
+phyla_plot_prot <- physq_phyla_phy_5 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Proteobacteria Y/N")
+phyla_plot_prot
+```
+
+```{r}
+# Subset data
+phyla_prot_y <- physq_phyla_phy_5 %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin") %>% filter(relative_abundance > 0)
+  
+phyla_prot_n <- physq_phyla_phy_5 %>% 
+  filter(antibiotic_past_year == "No") %>%
+filter(relative_abundance > 0)
+
+
+# Histogram
+ggplot(phyla_prot_y, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(phyla_prot_y$relative_abundance); qqline(phyla_prot_y$relative_abundance)
+
+ggplot(phyla_prot_n, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(phyla_prot_n$relative_abundance); qqline(phyla_prot_n$relative_abundance)
+```
+
+```{r}
+wilcox.test(x = phyla_prot_y$relative_abundance, 
+            y = phyla_prot_n$relative_abundance, 
+            paired = FALSE,
+            alternative = "two.sided")
+```
+
+The p-value of 0.197 would lead us to fail to reject the null hypothesis. The relative abundance between those who responded "Yes" or "No" to having taken antibiotic within the past year to the phylum Proteobacteria has a true location shift equal to 0.
+
+## Subset for Phylum: Sprichaetes	
+#```{r}
+physq_phyla_phy_6 <- physq_3 %>%
+  subset_taxa(Phylum == "Sprichaetes") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_6)
+```
+
+#```{r}
+phyla_plot_sprich <- physq_phyla_phy_6 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none")
+phyla_plot_sprich
+```
+
+Not enough releveant data from either data set could be compiled to make a figure or run a statistical test.
+
+## Subset for Phylum: Synergistetes
+```{r}
+physq_phyla_phy_7 <- physq_3 %>%
+  subset_taxa(Phylum == "Synergistetes") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_7)
+```
+
+```{r}
+phyla_plot_syner <- physq_phyla_phy_7 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Synergistetes Y/N")
+phyla_plot_syner
+```
+
+Only those who responded "No" appeared to have the majority abundance of Synergistetes, and there was no relevant data from both variables to conduct a statistical test. 
+
+## Subset for Phylum: Verrucomicrobia
+```{r}
+physq_phyla_phy_8 <- physq_3 %>%
+  subset_taxa(Phylum == "Verrucomicrobia") %>%
+  # convert counts to relative abundance 
+  transform_sample_counts(function(x) {x/sum(x)} ) %>%
+  # convert phyloseq object (matrix) to data frame 
+  psmelt() %>%
+  # sort alphabetically 
+  arrange(Genus) %>%
+  # Calculate weekly mean of relative abundance
+  group_by(participant_id, Genus, OTU, antibiotic_past_year, antibiotic_name, antibiotic_date, gram_status) %>%
+  summarise(relative_abundance = mean(Abundance, na.rm = TRUE)) 
+  # remove low abundance taxa
+print(physq_phyla_phy_8)
+```
+
+```{r}
+phyla_plot_verr <- physq_phyla_phy_8 %>%
+  filter(antibiotic_past_year == "Yes" | antibiotic_past_year == "No") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin" | antibiotic_name == "-") %>%
+  filter(relative_abundance > 0) %>%
+  ggplot(aes(x = antibiotic_past_year, 
+             y = relative_abundance, 
+             color = antibiotic_past_year), 
+         frequency) + 
+  geom_violin() + geom_jitter() + 
+  xlab(NULL) + 
+  ylab("Relative Abundance") + 
+  theme(legend.position = "none") +
+  ggtitle("Verrucomicrobia Y/N")
+phyla_plot_verr
+```
+
+```{r}
+# Subset data
+phyla_verr_y <- physq_phyla_phy_8 %>% 
+  filter(antibiotic_past_year == "Yes") %>%
+  filter(antibiotic_name == "Penicillin" | antibiotic_name == "Cephalexin" | antibiotic_name == "Amoxicillin")
+  
+phyla_verr_n <- physq_phyla_phy_8 %>% 
+  filter(antibiotic_past_year == "No") 
+
+
+# Histogram
+ggplot(phyla_verr_y, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(phyla_verr_y$relative_abundance); qqline(phyla_verr_y$relative_abundance)
+
+ggplot(phyla_prot_n, aes(x=relative_abundance)) +
+  geom_histogram() #histograms show the number of data points (count) at each value
+qqnorm(phyla_verr_n$relative_abundance); qqline(phyla_verr_n$relative_abundance)
+```
+
+```{r}
+wilcox.test(x = phyla_verr_y$relative_abundance, 
+            y = phyla_verr_n$relative_abundance, 
+            paired = FALSE,
+            alternative = "two.sided")
+```
+
+The p-value of 1 would lead us to fail to reject the null hypothesis. The relative abundance between those who responded "Yes" or "No" to having taken antibiotic within the past year to the phylum Verrucomicrobia has a true location shift equal to 0.
